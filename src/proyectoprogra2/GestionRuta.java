@@ -42,6 +42,52 @@ public class GestionRuta {
         this.Ruta = "";
         this.Hora = "";
     }
+    /**
+     * creacion de get y set
+     *
+     * 
+     * @return 
+     */
+    public String getId() {
+        return Id;
+    }
+
+    public void setId(String Id) {
+        this.Id = Id;
+    }
+
+    public String getSalida() {
+        return Salida;
+    }
+
+    public void setSalida(String Salida) {
+        this.Salida = Salida;
+    }
+
+    public String getLLegada() {
+        return LLegada;
+    }
+
+    public void setLLegada(String LLegada) {
+        this.LLegada = LLegada;
+    }
+
+    public String getRuta() {
+        return Ruta;
+    }
+
+    public void setRuta(String Ruta) {
+        this.Ruta = Ruta;
+    }
+
+    public String getHora() {
+        return Hora;
+    }
+
+    public void setHora(String Hora) {
+        this.Hora = Hora;
+    }
+    
     
     
     
