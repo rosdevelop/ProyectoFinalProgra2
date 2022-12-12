@@ -8,7 +8,7 @@ package proyectoprogra2;
  *
  * @author rosbinvasquez
  */
-public class Administradores extends Persona{
+public class Administrador extends Persona{
             /**
             *
             * Atributos y contiene herencia de persona
@@ -17,7 +17,7 @@ public class Administradores extends Persona{
          protected String Contrasena;
          protected String Correo;
 
-    public Administradores(String Usuario, String Contrasena, String Correo, String Nombre, String Cedula, String Apellido1, String Apellido2, String Telefono) {
+    public Administrador(String Usuario, String Contrasena, String Correo, String Nombre, String Cedula, String Apellido1, String Apellido2, String Telefono) {
         super(Nombre, Cedula, Apellido1, Apellido2, Telefono);
             /**
             *
@@ -28,13 +28,13 @@ public class Administradores extends Persona{
         this.Correo = Correo;
     }
 
-    public Administradores(String Usuario, String Contrasena, String Correo) {
+    public Administrador(String Usuario, String Contrasena, String Correo) {
         this.Usuario = Usuario;
         this.Contrasena = Contrasena;
         this.Correo = Correo;
     }
 
-    public Administradores() {
+    public Administrador() {
         /**
         *
         *@param arg Contructores sin parametros Administradores

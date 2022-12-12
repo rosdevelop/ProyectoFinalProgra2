@@ -28,7 +28,7 @@ public class ContextTXTAdministrador {
             fileWriter = new FileWriter(NameTXT);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
             
-                for (Administradores administrador : (ArrayList<Administradores>)lista)
+                for (Administrador administrador : (ArrayList<Administrador>)lista)
                 {
                     bufferedWriter.write(administrador.getUsuario()
                             +","+administrador.getContrasena ()
@@ -70,7 +70,7 @@ public class ContextTXTAdministrador {
             {
                 String linea = scanner.nextLine();
                 Scanner delimitar = new Scanner(linea);
-                Administradores Ad = new Administradores();
+                Administrador Ad = new Administrador();
                 delimitar.useDelimiter("\\s*,\\s*");
                 Ad.setUsuario(String.valueOf(delimitar.next()));
                 Ad.setContrasena(String.valueOf(delimitar.next()));
