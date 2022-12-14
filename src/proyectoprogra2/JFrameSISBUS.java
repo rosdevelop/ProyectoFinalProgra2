@@ -60,6 +60,11 @@ public class JFrameSISBUS extends javax.swing.JFrame {
         BtnGestionChoferes.setText("Gestión Choferes");
 
         BtnAdministrador.setText("Administrador");
+        BtnAdministrador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnAdministradorActionPerformed(evt);
+            }
+        });
 
         BtnCerrarSesion.setText("Cerrar Sesión");
 
@@ -128,6 +133,11 @@ public class JFrameSISBUS extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void BtnAdministradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAdministradorActionPerformed
+         JDialogAdministradores JDiaAdmin = new JDialogAdministradores(this, true);
+        JDiaAdmin.setVisible(true);
+    }//GEN-LAST:event_BtnAdministradorActionPerformed
 
     /**
      * @param args the command line arguments

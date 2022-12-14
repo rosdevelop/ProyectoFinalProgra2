@@ -214,10 +214,10 @@ public class JFrameLogin extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_BtnIngresarActionPerformed
 
-    public boolean login(String Usuario, String Contrasena) {
+    public boolean login(String Usuario, String Contraseña) {
         boolean log = false;
         for (int i = 0; i < Admin.size(); i++) {
-            if (Admin.get(i).getUsuario().equals(Usuario) && Admin.get(i).getContrasena().equals(Contrasena)) {
+            if (Admin.get(i).getUsuario().equals(Usuario) && Admin.get(i).getContraseña().equals(Contraseña)) {
                 log = true;
             }
 

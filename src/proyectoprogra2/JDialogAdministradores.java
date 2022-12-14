@@ -4,18 +4,49 @@
  */
 package proyectoprogra2;
 
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Sofia Murillo
  */
 public class JDialogAdministradores extends javax.swing.JDialog {
+    
+    static ArrayList <Administrador> lista = new ArrayList<>();
+    
+    
+static String Usuario;
+static String Correo;
+static String Contraseña;
 
     /**
      * Creates new form JDialogAdministradores
      */
-    public JDialogAdministradores(java.awt.Frame parent, boolean modal) {
+     public JDialogAdministradores(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        updateTxt();
+        readDataTable();
+        setLocationRelativeTo(null);
+        
+          TblAdministrador.addMouseListener(new MouseAdapter() {
+            DefaultTableModel model = new DefaultTableModel();
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int i = TblAdministrador.getSelectedRow();
+                Usuario = TblAdministrador.getValueAt(i, 0).toString();
+                Correo = TblAdministrador.getValueAt(i, 1).toString();
+                Contraseña = TblAdministrador.getValueAt(i, 2).toString();
+              
+
+            }
+
+        });
+        
     }
 
     /**
@@ -27,21 +58,300 @@ public class JDialogAdministradores extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        TextUsuario = new javax.swing.JTextField();
+        TextCorreo = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        TextContraseña = new javax.swing.JPasswordField();
+        ButtonLimpiar = new javax.swing.JButton();
+        jPanel4 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        TblAdministrador = new javax.swing.JTable();
+        jPanel2 = new javax.swing.JPanel();
+        ButtonGuardar = new javax.swing.JButton();
+        ButtonBorrar = new javax.swing.JButton();
+        ButtonActualizar = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jPanel1.setBackground(new java.awt.Color(243, 249, 249));
+        jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jPanel1MouseReleased(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(4, 88, 96));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Usuario");
+
+        TextUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TextUsuarioActionPerformed(evt);
+            }
+        });
+
+        TextCorreo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TextCorreoActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(4, 88, 96));
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Correo");
+
+        jLabel2.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(4, 88, 96));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Contraseña");
+
+        ButtonLimpiar.setBackground(new java.awt.Color(255, 0, 51));
+        ButtonLimpiar.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        ButtonLimpiar.setForeground(new java.awt.Color(255, 255, 255));
+        ButtonLimpiar.setText("Limpiar");
+        ButtonLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonLimpiarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(TextCorreo)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(TextUsuario)
+                            .addComponent(TextContraseña)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(77, 77, 77)
+                        .addComponent(ButtonLimpiar)))
+                .addContainerGap(32, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addComponent(jLabel1)
+                .addGap(10, 10, 10)
+                .addComponent(TextUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(4, 4, 4)
+                .addComponent(jLabel3)
+                .addGap(7, 7, 7)
+                .addComponent(TextCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(11, 11, 11)
+                .addComponent(jLabel2)
+                .addGap(7, 7, 7)
+                .addComponent(TextContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(43, 43, 43)
+                .addComponent(ButtonLimpiar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel4.setBackground(new java.awt.Color(243, 249, 249));
+        jPanel4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 42, Short.MAX_VALUE)
+        );
+
+        TblAdministrador.setAutoCreateRowSorter(true);
+        TblAdministrador.setBackground(new java.awt.Color(243, 249, 249));
+        TblAdministrador.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        TblAdministrador.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        TblAdministrador.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Usuario", "Correo", "Contraseña"
+            }
+        ));
+        TblAdministrador.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TblAdministradorMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(TblAdministrador);
+
+        ButtonGuardar.setBackground(new java.awt.Color(0, 0, 255));
+        ButtonGuardar.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        ButtonGuardar.setForeground(new java.awt.Color(255, 255, 255));
+        ButtonGuardar.setText("Guardar");
+        ButtonGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonGuardarActionPerformed(evt);
+            }
+        });
+
+        ButtonBorrar.setBackground(new java.awt.Color(255, 0, 51));
+        ButtonBorrar.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        ButtonBorrar.setForeground(new java.awt.Color(255, 255, 255));
+        ButtonBorrar.setText("Borrar");
+        ButtonBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonBorrarActionPerformed(evt);
+            }
+        });
+
+        ButtonActualizar.setBackground(new java.awt.Color(0, 0, 205));
+        ButtonActualizar.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        ButtonActualizar.setForeground(new java.awt.Color(255, 255, 255));
+        ButtonActualizar.setText("Actiualizar");
+        ButtonActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonActualizarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(51, 51, 51)
+                .addComponent(ButtonBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(41, 41, 41)
+                .addComponent(ButtonActualizar)
+                .addGap(47, 47, 47)
+                .addComponent(ButtonGuardar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ButtonGuardar)
+                    .addComponent(ButtonBorrar)
+                    .addComponent(ButtonActualizar))
+                .addContainerGap(55, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(2, 2, 2)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 518, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(7, 7, 7)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void TextUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextUsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TextUsuarioActionPerformed
+
+    private void TextCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextCorreoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TextCorreoActionPerformed
+
+    private void jPanel1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPanel1MouseReleased
+
+    private void TblAdministradorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TblAdministradorMouseClicked
+
+        TextUsuario.setText(Usuario);
+        TextUsuario.setEditable(false);
+        TextContraseña.setText(Contraseña);
+        TextCorreo.setText(Correo);
+
+    }//GEN-LAST:event_TblAdministradorMouseClicked
+
+    private void ButtonLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonLimpiarActionPerformed
+         LimpiarCasillas();       
+    }//GEN-LAST:event_ButtonLimpiarActionPerformed
+
+    private void ButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonGuardarActionPerformed
+
+     Administrador administrador = new Administrador(TextUsuario.getText(),TextContraseña.getText(),TextCorreo.getText());
+        lista.add(administrador);
+        ContextTXTAdministrador.GuardarDatos(lista);
+        updateTxt();
+        LimpiarCasillas();
+        readDataTable();
+
+    }//GEN-LAST:event_ButtonGuardarActionPerformed
+
+    private void ButtonBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBorrarActionPerformed
+         
+        
+        for (int i = 0; i < lista.size(); i++)
+        {
+            if(Usuario.equals(lista.get(i).getUsuario()))
+            {
+                lista.remove(i);
+
+            }
+        }
+
+        readDataTable();
+        updateTxt();
+        LimpiarCasillas();
+                                    
+    }//GEN-LAST:event_ButtonBorrarActionPerformed
+
+    private void ButtonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonActualizarActionPerformed
+         
+        for (int i = 0; i < lista.size() ; i++)
+        {
+
+            if(TextUsuario.getText().equals(lista.get(i).getUsuario()))
+            {
+                lista.get(i).setUsuario(TextUsuario.getText());
+                lista.get(i).setContraseña(TextContraseña.getText());
+                lista.get(i).setCorreo(TextCorreo.getText());
+               
+            }
+        }
+
+        readDataTable();
+        LimpiarCasillas();
+        updateTxt();
+    }//GEN-LAST:event_ButtonActualizarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -62,7 +372,7 @@ public class JDialogAdministradores extends javax.swing.JDialog {
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(JDialogAdministradores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JDialogAdministradores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            /*           java.uTextCorreo.Logger.getLogger(JDialogAdministradores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);*/
         } catch (IllegalAccessException ex) {
             java.util.logging.Logger.getLogger(JDialogAdministradores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
@@ -86,5 +396,54 @@ public class JDialogAdministradores extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton ButtonActualizar;
+    private javax.swing.JButton ButtonBorrar;
+    private javax.swing.JButton ButtonGuardar;
+    private javax.swing.JButton ButtonLimpiar;
+    private javax.swing.JTable TblAdministrador;
+    private javax.swing.JPasswordField TextContraseña;
+    private javax.swing.JTextField TextCorreo;
+    private javax.swing.JTextField TextUsuario;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
+
+    private void updateTxt() {
+        
+        lista = ContextTXTAdministrador.LeerDatos();
+    }
+    
+    
+
+    private void readDataTable() {
+        
+         String Admin [][] = new String[lista.size()][3];
+
+        for (int i = 0; i < lista.size(); i++) {
+            Admin[i][0] = lista.get(i).getUsuario();
+            Admin[i][1] = lista.get(i).getCorreo();
+            Admin[i][2] = lista.get(i).getContraseña();
+           
+        }
+        TblAdministrador.setModel(new javax.swing.table.DefaultTableModel(Admin, new String[]{"Usuario", "Correo", "Contraseña"}));
+
+    
+    }
+    
+    public void LimpiarCasillas()
+    {
+        
+        TextUsuario.setText("");
+        TextCorreo.setText("");
+        TextContraseña.setText("");
+        TextUsuario.setEditable(true);
+    
+    }
+    
+    
 }

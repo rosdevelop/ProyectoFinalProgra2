@@ -14,23 +14,23 @@ public class Administrador extends Persona{
             * Atributos y contiene herencia de persona
             */ 
          protected String Usuario;
-         protected String Contrasena;
+         protected String Contraseña;
          protected String Correo;
 
-    public Administrador(String Usuario, String Contrasena, String Correo, String Nombre, String Cedula, String Apellido1, String Apellido2, String Telefono) {
+    public Administrador(String Usuario, String Contraseña, String Correo, String Nombre, String Cedula, String Apellido1, String Apellido2, String Telefono) {
         super(Nombre, Cedula, Apellido1, Apellido2, Telefono);
             /**
             *
             *@param arg Contructores con parametros Administradores
             */ 
         this.Usuario = Usuario;
-        this.Contrasena = Contrasena;
+        this.Contraseña = Contraseña;
         this.Correo = Correo;
     }
 
     public Administrador(String Usuario, String Contrasena, String Correo) {
         this.Usuario = Usuario;
-        this.Contrasena = Contrasena;
+        this.Contraseña = Contrasena;
         this.Correo = Correo;
     }
 
@@ -40,7 +40,7 @@ public class Administrador extends Persona{
         *@param arg Contructores sin parametros Administradores
         */ 
         this.Usuario = "";
-        this.Contrasena = "";
+        this.Contraseña = "";
         this.Correo = "";
     }
 
@@ -52,12 +52,12 @@ public class Administrador extends Persona{
         this.Usuario = Usuario;
     }
 
-    public String getContrasena() {
-        return Contrasena;
+    public String getContraseña() {
+        return Contraseña;
     }
 
-    public void setContrasena(String Contrasena) {
-        this.Contrasena = Contrasena;
+    public void setContraseña(String Contrasena) {
+        this.Contraseña = Contrasena;
     }
 
     public String getCorreo() {
