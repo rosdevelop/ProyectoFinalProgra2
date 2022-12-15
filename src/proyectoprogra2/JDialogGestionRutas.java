@@ -3,12 +3,21 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
 package proyectoprogra2;
-
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author Sofia Murillo
  */
 public class JDialogGestionRutas extends javax.swing.JDialog {
+ static ArrayList<GestionRuta> gestionrutas = new ArrayList<GestionRuta>();
+  static String IdRuta;
+static String LugarSalida;
+static String LugarLlegada;
+static String Ruta;
+static String TiempoEstimado;
 
     /**
      * Creates new form JDialogGestionRutas
@@ -16,6 +25,23 @@ public class JDialogGestionRutas extends javax.swing.JDialog {
     public JDialogGestionRutas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        cargarDatos();
+        LeerTabla();
+        setLocationRelativeTo(null);
+        
+          jTableGestionRutas.addMouseListener(new MouseAdapter() {
+            DefaultTableModel model = new DefaultTableModel();
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int i = jTableGestionRutas.getSelectedRow();
+                    IdRuta = jTableGestionRutas.getValueAt(i, 0).toString();
+                LugarSalida= jTableGestionRutas.getValueAt(i, 1).toString();
+                LugarLlegada = jTableGestionRutas.getValueAt(i, 2).toString();
+                 Ruta = jTableGestionRutas.getValueAt(i, 3).toString();
+                  TiempoEstimado = jTableGestionRutas.getValueAt(i, 4).toString();
+            }
+   });
     }
 
     /**
@@ -126,6 +152,24 @@ public class JDialogGestionRutas extends javax.swing.JDialog {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jTextFieldRuta, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(85, 85, 85))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jTextFieldLugarLlegada, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(90, 90, 90))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jTextFieldLugarSalida, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(101, 101, 101))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jTextFieldIdRuta, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(101, 101, 101))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jTextFieldTiempoestimado, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(94, 94, 94))))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -150,36 +194,14 @@ public class JDialogGestionRutas extends javax.swing.JDialog {
                                 .addComponent(ButtonActualizar)
                                 .addGap(18, 18, 18)
                                 .addComponent(ButtonEliminar)
-                                .addGap(0, 21, Short.MAX_VALUE)))))
+                                .addGap(0, 21, Short.MAX_VALUE))))
+                    .addComponent(jLabelPlaca3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jTextFieldRuta, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(85, 85, 85))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jTextFieldLugarLlegada, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(90, 90, 90))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jTextFieldLugarSalida, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(101, 101, 101))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jTextFieldIdRuta, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(101, 101, 101))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jTextFieldTiempoestimado, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(94, 94, 94))))
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel2Layout.createSequentialGroup()
                     .addGap(65, 65, 65)
                     .addComponent(jLabelPlaca2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGap(49, 49, 49)))
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addGap(5, 5, 5)
-                    .addComponent(jLabelPlaca3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGap(20, 20, 20)))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -198,7 +220,9 @@ public class JDialogGestionRutas extends javax.swing.JDialog {
                 .addComponent(jLabelNombrebus)
                 .addGap(18, 18, 18)
                 .addComponent(jTextFieldLugarLlegada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51)
+                .addGap(22, 22, 22)
+                .addComponent(jLabelPlaca3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextFieldRuta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabelPlaca1)
@@ -215,11 +239,6 @@ public class JDialogGestionRutas extends javax.swing.JDialog {
                     .addGap(79, 79, 79)
                     .addComponent(jLabelPlaca2)
                     .addContainerGap(511, Short.MAX_VALUE)))
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                    .addContainerGap(304, Short.MAX_VALUE)
-                    .addComponent(jLabelPlaca3)
-                    .addGap(285, 285, 285)))
         );
 
         jPanel1.setBackground(new java.awt.Color(177, 221, 221));
@@ -273,14 +292,14 @@ public class JDialogGestionRutas extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ButtonCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonCrearActionPerformed
-        GestionFlotilla gestFlo = new  GestionFlotilla ();
-        gestFlo.setPlaca(jTextFieldIdRuta.getText());
-        gestFlo.setCantidadPasajeros(jTextFieldLugarSalida.getText());
-        gestFlo.setNombreBus(jTextFieldLugarLlegada.getText());
-        gestFlo.setVidaUtil(Integer.parseInt(jTextFieldRuta.getText()));
-
-        gestionflotilla.add(gestFlo);
-        ContextTXTGestionFlotilla.Guardardatos(gestionflotilla);
+        GestionRuta gestRuta = new  GestionRuta ();
+        gestRuta.setId(jTextFieldRuta.getText());
+        gestRuta.setSalida(jTextFieldLugarSalida.getText());
+        gestRuta.setLLegada(jTextFieldLugarLlegada.getText());
+         gestRuta.setRuta(jTextFieldRuta.getText());
+        gestRuta.setHora(jTextFieldTiempoestimado.getText());
+        gestionrutas.add(gestRuta);
+        ContextTXTGestionFlotilla.Guardardatos(gestionrutas);
         LeerTabla();
         // TODO add your handling code here:
     }//GEN-LAST:event_ButtonCrearActionPerformed
@@ -288,16 +307,17 @@ public class JDialogGestionRutas extends javax.swing.JDialog {
     private void ButtonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonActualizarActionPerformed
         for (int i = 0; i < 10; i++) {
 
-            if (gestionflotilla.get(i).getPlaca().equals(Placa))
+            if (gestionrutas.get(i).getId().equals(IdRuta))
             {
 
                 //
-                gestionflotilla.get(i).setPlaca(jTextFieldIdRuta.getText());
-                gestionflotilla.get(i).setCantidadPasajeros(jTextFieldLugarSalida.getText());
-                gestionflotilla.get(i).setNombreBus(jTextFieldLugarLlegada.getText());
-                gestionflotilla.get(i).setVidaUtil(Integer.parseInt(jTextFieldRuta.getText()));
-
-                ContextTXTGestionFlotilla.LeerDatos();
+                gestionrutas.get(i).setId(jTextFieldIdRuta.getText());
+                gestionrutas.get(i).setSalida(jTextFieldLugarSalida.getText());
+                gestionrutas.get(i).setLLegada(jTextFieldLugarLlegada.getText());
+                gestionrutas.get(i).setRuta(jTextFieldRuta.getText());
+                gestionrutas.get(i).setHora(jTextFieldTiempoestimado.getText());
+                    
+                ContextTXTGestionRuta.LeerDatos();
                 LeerTabla();
 
             }
@@ -309,10 +329,10 @@ public class JDialogGestionRutas extends javax.swing.JDialog {
 
     private void ButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonEliminarActionPerformed
         try {
-            for (int i = 0; i < gestionflotilla.size(); i++) {
-                if (gestionflotilla.get(i).getPlaca().equals(Placa)) {
-                    gestionflotilla.remove(i);
-                    ContextTXTGestionFlotilla.Guardardatos(gestionflotilla);
+            for (int i = 0; i < gestionrutas.size(); i++) {
+                if (gestionrutas.get(i).getId().equals(IdRuta)) {
+                    gestionrutas.remove(i);
+                    ContextTXTGestionFlotilla.Guardardatos(gestionrutas);
 
                     LeerTabla();
                 }
