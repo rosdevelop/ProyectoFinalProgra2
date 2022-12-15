@@ -154,6 +154,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Gesti&#xf3;n Choferes"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnGestionChoferesActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="BtnAdministrador">
       <Properties>
