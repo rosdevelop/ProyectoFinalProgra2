@@ -25,8 +25,8 @@ static int VidaUtil;
     public JDialogGestionFlotilla(java.awt.Frame parent, boolean modal) { 
         super(parent, modal);
         initComponents();
-          updateTxt();
-        readDataTable();
+          cargarDatos();
+        LeerTabla();
         setLocationRelativeTo(null);
         
           jTGestionFlotilla.addMouseListener(new MouseAdapter() {
@@ -233,6 +233,11 @@ static int VidaUtil;
                 "Placa", "Cantidad Pasajeros", "Nombre", "Vida Util"
             }
         ));
+        jTGestionFlotilla.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTGestionFlotillaMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTGestionFlotilla);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -275,7 +280,17 @@ static int VidaUtil;
     }// </editor-fold>//GEN-END:initComponents
 
     private void ButtonCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonCrearActionPerformed
-        // TODO add your handling code here:
+       GestionFlotilla gestFlo = new  GestionFlotilla ();
+        gestFlo.setPlaca(jTextPlaca.getText());
+        gestFlo.setCantidadPasajeros(jTextFieldCantidadPasajeros.getText());
+        gestFlo.setNombreBus(jTextFieldNombrebus.getText());
+        gestFlo.setVidaUtil(Integer.parseInt(jTextFieldVidautil.getText()));
+       
+
+        gestionflotilla.add(gestFlo);
+         ContextTXTGestionFlotilla.Guardardatos(gestionflotilla);
+              LeerTabla();
+                // TODO add your handling code here:
     }//GEN-LAST:event_ButtonCrearActionPerformed
 
     private void ButtonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonActualizarActionPerformed
@@ -291,8 +306,7 @@ static int VidaUtil;
                                gestionflotilla.get(i).setVidaUtil(Integer.parseInt(jTextFieldVidautil.getText()));
                 
                 ContextTXTGestionFlotilla.LeerDatos();
-                limpiarDataProfesor();
-                showTable();
+                 LeerTabla();
 
             }
 
@@ -307,8 +321,8 @@ static int VidaUtil;
                 if (gestionflotilla.get(i).getPlaca().equals(Placa)) {
                     gestionflotilla.remove(i);
                      ContextTXTGestionFlotilla.Guardardatos(gestionflotilla);
-                    limpiarDataProfesor();
-                    showTable();
+                    
+                    LeerTabla();
                 }
 
             }
@@ -319,6 +333,22 @@ static int VidaUtil;
 
         // TODO add your handling code here:
     }//GEN-LAST:event_ButtonEliminarActionPerformed
+
+    private void jTGestionFlotillaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTGestionFlotillaMouseClicked
+        jTextPlaca.setText(Placa);
+        jTextFieldCantidadPasajeros.setText(CantidadPasajeros);
+        jTextFieldNombrebus.setText(NombreBus);
+         jTextFieldVidautil.setText(String.valueOf(VidaUtil));
+        ButtonCrear.setEnabled(false);
+        jTextPlaca.setEnabled(false);
+
+         
+         
+             // TODO add your handling code here:
+    }//GEN-LAST:event_jTGestionFlotillaMouseClicked
+ public void cargarDatos() {
+        gestionflotilla = ContextTXTGestionFlotilla.LeerDatos();
+    }
 
     /**
      * @param args the command line arguments
@@ -361,6 +391,21 @@ static int VidaUtil;
             }
         });
     }
+    public void LeerTabla() {
+
+        String GesFlofMat[][] = new String[gestionflotilla.size()][8];
+
+        for (int i = 0; i < gestionflotilla.size(); i++) {
+            GesFlofMat[i][0] = gestionflotilla.get(i).getPlaca();
+            GesFlofMat[i][1] = gestionflotilla.get(i).getCantidadPasajeros();
+            GesFlofMat[i][2] = gestionflotilla.get(i).getNombreBus();
+           GesFlofMat[i][6] = String.valueOf(gestionflotilla.get(i).getVidaUtil());
+            
+        }
+        jTGestionFlotilla.setModel(new javax.swing.table.DefaultTableModel(GesFlofMat, new String[]{"Placa", "Nombre", "Cantidad de Pasajeros", " Nombre Bus", "Vida Util (Km)"}));
+
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonActualizar;
