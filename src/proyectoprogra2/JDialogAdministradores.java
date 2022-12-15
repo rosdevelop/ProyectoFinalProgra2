@@ -8,6 +8,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
+import static proyectoprogra2.JDialogGestionChoferes.ListaChofe;
 
 /**
  *
@@ -319,15 +320,15 @@ static String Contraseña;
     private void ButtonBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBorrarActionPerformed
          
         
-        for (int i = 0; i < lista.size(); i++)
-        {
-            if(Usuario.equals(lista.get(i).getUsuario()))
-            {
-                lista.remove(i);
+            for (int i = 0; i < lista.size(); i++) {
+                if (lista.get(i).getUsuario().equals(Usuario)) {
+                    lista.remove(i);
+                    ContextTXTAdministrador.GuardarDatos(lista);
+                    LimpiarCasillas();
+                    
+                }
 
-            }
-        }
-
+            }  
         readDataTable();
         updateTxt();
         LimpiarCasillas();
@@ -336,14 +337,14 @@ static String Contraseña;
 
     private void ButtonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonActualizarActionPerformed
          
-        for (int i = 0; i < lista.size() ; i++)
+         for (int i = 0; i < lista.size() ; i++)
         {
 
             if(TextUsuario.getText().equals(lista.get(i).getUsuario()))
             {
                 lista.get(i).setUsuario(TextUsuario.getText());
-                lista.get(i).setContraseña(TextContraseña.getText());
                 lista.get(i).setCorreo(TextCorreo.getText());
+                lista.get(i).setContraseña(TextContraseña.getText());
                
             }
         }
@@ -351,6 +352,7 @@ static String Contraseña;
         readDataTable();
         LimpiarCasillas();
         updateTxt();
+                
     }//GEN-LAST:event_ButtonActualizarActionPerformed
 
     /**

@@ -4,11 +4,26 @@
  */
 package proyectoprogra2;
 
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+import static proyectoprogra2.JDialogAdministradores.lista;
+
 /**
  *
  * @author rosbinvasquez
  */
 public class JDialogGestionChoferes extends javax.swing.JDialog {
+    
+    
+    static ArrayList<Choferes> ListaChofe = new ArrayList<Choferes>();
+    String Cedula;
+    String Nombre;
+    String PrimerApellido;
+    String SegundoApellido;
+    String NumeroTelefono;
+    String AñosExperiencia;
 
     /**
      * Creates new form JDialogGestionChoferes
@@ -16,6 +31,24 @@ public class JDialogGestionChoferes extends javax.swing.JDialog {
     public JDialogGestionChoferes(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+         cargarData();
+        showTable();
+        setLocationRelativeTo(null);
+        TblGestionDeChofer.addMouseListener(new MouseAdapter() {
+            DefaultTableModel model = new DefaultTableModel();
+                
+                  @Override
+            public void mouseClicked(MouseEvent e) {
+                int i = TblGestionDeChofer.getSelectedRow();
+                Cedula = TblGestionDeChofer.getValueAt(i, 0).toString();
+                Nombre = TblGestionDeChofer.getValueAt(i, 1).toString();
+                PrimerApellido = TblGestionDeChofer.getValueAt(i, 2).toString();
+                SegundoApellido = TblGestionDeChofer.getValueAt(i, 3).toString();
+                NumeroTelefono = TblGestionDeChofer.getValueAt(i, 4).toString();
+                AñosExperiencia = TblGestionDeChofer.getValueAt(i, 5).toString();
+            }
+
+        });
     }
 
     /**
@@ -174,16 +207,31 @@ public class JDialogGestionChoferes extends javax.swing.JDialog {
         ButtonCrear.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         ButtonCrear.setForeground(new java.awt.Color(255, 255, 255));
         ButtonCrear.setText("Crear");
+        ButtonCrear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonCrearActionPerformed(evt);
+            }
+        });
 
         ButtonActualizar.setBackground(new java.awt.Color(0, 0, 205));
         ButtonActualizar.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         ButtonActualizar.setForeground(new java.awt.Color(255, 255, 255));
         ButtonActualizar.setText("Actializar");
+        ButtonActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonActualizarActionPerformed(evt);
+            }
+        });
 
         ButtonEliminar.setBackground(new java.awt.Color(255, 0, 51));
         ButtonEliminar.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         ButtonEliminar.setForeground(new java.awt.Color(255, 255, 255));
         ButtonEliminar.setText("Eliminar");
+        ButtonEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonEliminarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -250,8 +298,68 @@ public class JDialogGestionChoferes extends javax.swing.JDialog {
     }//GEN-LAST:event_TextCedulaActionPerformed
 
     private void TblGestionDeChoferMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TblGestionDeChoferMouseClicked
-        // TODO add your handling code here:
+  
+        TextCedula.setText(Cedula);
+        TextNombre.setText(Nombre);
+        TextPrimerApellido.setText(PrimerApellido);
+        TextSegundoApellido.setText(SegundoApellido);
+        TextNumero.setText(NumeroTelefono);
+        TextAños.setText(String.valueOf(AñosExperiencia));
+        ButtonCrear.setEnabled(false);
+        TextCedula.setEnabled(false);
+        
     }//GEN-LAST:event_TblGestionDeChoferMouseClicked
+
+    private void ButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonEliminarActionPerformed
+          
+            for (int i = 0; i < ListaChofe.size(); i++) {
+                if (ListaChofe.get(i).getCedula().equals(Cedula)) {
+                    ListaChofe.remove(i);
+                    ContextTXTGestionChoferes.GuardarDatos(ListaChofe);
+                    LimpiarCasillas();
+                    showTable();
+                }
+
+            }  
+    }//GEN-LAST:event_ButtonEliminarActionPerformed
+
+    private void ButtonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonActualizarActionPerformed
+       
+        for (int i = 0; i < 10; i++) {
+
+            if (ListaChofe.get(i).getCedula().equals(Cedula))
+            {
+
+                ListaChofe.get(i).setNombre(TextNombre.getText());
+                ListaChofe.get(i).setApellido1(TextPrimerApellido.getText());
+                ListaChofe.get(i).setApellido2(TextSegundoApellido.getText());
+                ListaChofe.get(i).setTelefono(TextNumero.getText());
+                ListaChofe.get(i).setExperiencia(Integer.parseInt(TextAños.getText()));
+           
+
+                ContextTXTGestionChoferes.GuardarDatos(ListaChofe);
+                LimpiarCasillas();
+                showTable();
+
+            }
+
+        }
+    }//GEN-LAST:event_ButtonActualizarActionPerformed
+
+    private void ButtonCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonCrearActionPerformed
+         Choferes cho = new Choferes();
+        cho.setCedula(TextCedula.getText());
+        cho.setNombre(TextNombre.getText());
+        cho.setApellido1(TextPrimerApellido.getText());
+        cho.setApellido2(TextSegundoApellido.getText());
+        cho.setTelefono(TextNumero.getText());
+        cho.setExperiencia(Integer.parseInt(TextAños.getText()));
+       
+
+        ListaChofe.add(cho);
+        ContextTXTGestionChoferes.GuardarDatos(ListaChofe);
+        LimpiarCasillas();
+        showTable();    }//GEN-LAST:event_ButtonCrearActionPerformed
 
     /**
      * @param args the command line arguments
@@ -316,4 +424,42 @@ public class JDialogGestionChoferes extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
+
+    private void cargarData() {
+        
+        ListaChofe = ContextTXTGestionChoferes.LeerDatos();
+    }
+
+    private void showTable() {
+        
+         String chof[][] = new String[ListaChofe.size()][6];
+
+        for (int i = 0; i < ListaChofe.size(); i++) {
+            chof[i][0] = ListaChofe.get(i).getCedula();
+            chof[i][1] = ListaChofe.get(i).getNombre();
+            chof[i][2] = ListaChofe.get(i).getApellido1();
+            chof[i][3] = ListaChofe.get(i).getApellido2();
+            chof[i][4] = ListaChofe.get(i).getTelefono();
+            chof[i][5] = String.valueOf(ListaChofe.get(i).getExperiencia());
+           
+        }
+        TblGestionDeChofer.setModel(new javax.swing.table.DefaultTableModel(chof, new String[]{"Cedula", "Nombre", "Primer Apellido", "Segundo Apellido", "Numero de Telefono", "Años de Experiencia"}));
+
+    }
+  
+    private void LimpiarCasillas() {
+        
+         TextCedula.setText("");
+        TextNombre.setText("");
+        TextPrimerApellido.setText("");
+        TextSegundoApellido.setText("");
+        TextNumero.setText("");
+        TextAños.setText("");
+        TextCedula.setEnabled(true);
+        ButtonCrear.setEnabled(true);
+    }
+
+    private void updateTxt() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
