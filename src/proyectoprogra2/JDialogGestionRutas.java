@@ -25,8 +25,8 @@ static String TiempoEstimado;
     public JDialogGestionRutas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        cargarDatos();
-        LeerTabla();
+        //cargarDatos();
+       // LeerTabla();
         setLocationRelativeTo(null);
         
           jTableGestionRutas.addMouseListener(new MouseAdapter() {
@@ -300,7 +300,7 @@ static String TiempoEstimado;
         gestRuta.setHora(jTextFieldTiempoestimado.getText());
         gestionrutas.add(gestRuta);
         ContextTXTGestionFlotilla.Guardardatos(gestionrutas);
-        LeerTabla();
+      //  LeerTabla();
         // TODO add your handling code here:
     }//GEN-LAST:event_ButtonCrearActionPerformed
 
@@ -318,7 +318,7 @@ static String TiempoEstimado;
                 gestionrutas.get(i).setHora(jTextFieldTiempoestimado.getText());
                     
                 ContextTXTGestionRuta.LeerDatos();
-                LeerTabla();
+             //   LeerTabla();
 
             }
 
@@ -334,7 +334,7 @@ static String TiempoEstimado;
                     gestionrutas.remove(i);
                     ContextTXTGestionFlotilla.Guardardatos(gestionrutas);
 
-                    LeerTabla();
+                   // LeerTabla();
                 }
 
             }
