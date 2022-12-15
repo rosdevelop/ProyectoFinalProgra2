@@ -73,6 +73,8 @@ static int VidaUtil;
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(177, 221, 221));
+
         jLabelPlaca.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jLabelPlaca.setForeground(new java.awt.Color(4, 88, 96));
         jLabelPlaca.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -105,7 +107,7 @@ static int VidaUtil;
 
         jTextFieldNombrebus.setText(" ");
 
-        ButtonCrear.setBackground(new java.awt.Color(0, 0, 205));
+        ButtonCrear.setBackground(new java.awt.Color(8, 31, 135));
         ButtonCrear.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         ButtonCrear.setForeground(new java.awt.Color(255, 255, 255));
         ButtonCrear.setText("Crear");
@@ -115,7 +117,7 @@ static int VidaUtil;
             }
         });
 
-        ButtonActualizar.setBackground(new java.awt.Color(0, 0, 205));
+        ButtonActualizar.setBackground(new java.awt.Color(8, 31, 135));
         ButtonActualizar.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         ButtonActualizar.setForeground(new java.awt.Color(255, 255, 255));
         ButtonActualizar.setText("Actualizar");
@@ -125,7 +127,7 @@ static int VidaUtil;
             }
         });
 
-        ButtonEliminar.setBackground(new java.awt.Color(255, 0, 51));
+        ButtonEliminar.setBackground(new java.awt.Color(54, 86, 21));
         ButtonEliminar.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         ButtonEliminar.setForeground(new java.awt.Color(255, 255, 255));
         ButtonEliminar.setText("Eliminar");
@@ -222,6 +224,9 @@ static int VidaUtil;
                     .addContainerGap(511, Short.MAX_VALUE)))
         );
 
+        jPanel3.setBackground(new java.awt.Color(177, 221, 221));
+
+        jTGestionFlotilla.setBackground(new java.awt.Color(177, 221, 221));
         jTGestionFlotilla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -233,6 +238,7 @@ static int VidaUtil;
                 "Placa", "Cantidad Pasajeros", "Nombre", "Vida Util"
             }
         ));
+        jTGestionFlotilla.setGridColor(new java.awt.Color(177, 221, 221));
         jTGestionFlotilla.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTGestionFlotillaMouseClicked(evt);
@@ -244,16 +250,17 @@ static int VidaUtil;
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(16, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(59, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(0, 16, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -263,17 +270,13 @@ static int VidaUtil;
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -281,7 +284,7 @@ static int VidaUtil;
 
     private void ButtonCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonCrearActionPerformed
        GestionFlotilla gestFlo = new  GestionFlotilla ();
-        gestFlo.setPlaca(jTextPlaca.getText());
+        gestFlo.setPlaca(jTextFieldPlaca.getText());
         gestFlo.setCantidadPasajeros(jTextFieldCantidadPasajeros.getText());
         gestFlo.setNombreBus(jTextFieldNombrebus.getText());
         gestFlo.setVidaUtil(Integer.parseInt(jTextFieldVidautil.getText()));
@@ -300,7 +303,7 @@ static int VidaUtil;
             {
               
 //                
-                gestionflotilla.get(i).setPlaca(jTextPlaca.getText());
+                gestionflotilla.get(i).setPlaca(jTextFieldPlaca.getText());
                 gestionflotilla.get(i).setCantidadPasajeros(jTextFieldCantidadPasajeros.getText());
                 gestionflotilla.get(i).setNombreBus(jTextFieldNombrebus.getText());
                                gestionflotilla.get(i).setVidaUtil(Integer.parseInt(jTextFieldVidautil.getText()));
@@ -335,12 +338,12 @@ static int VidaUtil;
     }//GEN-LAST:event_ButtonEliminarActionPerformed
 
     private void jTGestionFlotillaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTGestionFlotillaMouseClicked
-        jTextPlaca.setText(Placa);
+        jTextFieldPlaca.setText(Placa);
         jTextFieldCantidadPasajeros.setText(CantidadPasajeros);
         jTextFieldNombrebus.setText(NombreBus);
          jTextFieldVidautil.setText(String.valueOf(VidaUtil));
         ButtonCrear.setEnabled(false);
-        jTextPlaca.setEnabled(false);
+        jTextFieldPlaca.setEnabled(false);
 
          
          
@@ -418,7 +421,6 @@ static int VidaUtil;
     private javax.swing.JLabel jLabelPlaca1;
     private javax.swing.JLabel jLabelPlaca2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTGestionFlotilla;
@@ -426,6 +428,5 @@ static int VidaUtil;
     private javax.swing.JTextField jTextFieldNombrebus;
     private javax.swing.JTextField jTextFieldPlaca;
     private javax.swing.JTextField jTextFieldVidautil;
-    private javax.swing.JTextField jTextPlaca;
     // End of variables declaration//GEN-END:variables
 }
