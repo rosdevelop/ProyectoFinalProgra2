@@ -3,19 +3,45 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
 package proyectoprogra2;
-
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author Sofia Murillo
  */
 public class JDialogGestionFlotilla extends javax.swing.JDialog {
+  static ArrayList<GestionFlotilla> gestionflotilla = new ArrayList<GestionFlotilla>();
+  static String Placa;
+static String CantidadPasajeros;
+static String NombreBus;
+static int VidaUtil;
 
+  
     /**
      * Creates new form JDialogGestionFlotilla
      */
-    public JDialogGestionFlotilla(java.awt.Frame parent, boolean modal) {
+    public JDialogGestionFlotilla(java.awt.Frame parent, boolean modal) { 
         super(parent, modal);
         initComponents();
+          updateTxt();
+        readDataTable();
+        setLocationRelativeTo(null);
+        
+          jTGestionFlotilla.addMouseListener(new MouseAdapter() {
+            DefaultTableModel model = new DefaultTableModel();
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int i = jTGestionFlotilla.getSelectedRow();
+                    Placa = jTGestionFlotilla.getValueAt(i, 0).toString();
+                CantidadPasajeros= jTGestionFlotilla.getValueAt(i, 1).toString();
+                NombreBus = jTGestionFlotilla.getValueAt(i, 2).toString();
+                VidaUtil = Integer.valueOf(jTGestionFlotilla.getValueAt(i, 3).toString());
+            }
+   });
+       
     }
 
     /**
@@ -36,13 +62,14 @@ public class JDialogGestionFlotilla extends javax.swing.JDialog {
         jLabelCantidaPasajeros = new javax.swing.JLabel();
         jTextFieldCantidadPasajeros = new javax.swing.JTextField();
         jTextFieldVidautil = new javax.swing.JTextField();
-        jTextFieldCantidadPasajeros2 = new javax.swing.JTextField();
+        jTextFieldNombrebus = new javax.swing.JTextField();
         ButtonCrear = new javax.swing.JButton();
         ButtonActualizar = new javax.swing.JButton();
         ButtonEliminar = new javax.swing.JButton();
+        LbError = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTGestionFlotilla = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -76,7 +103,7 @@ public class JDialogGestionFlotilla extends javax.swing.JDialog {
 
         jTextFieldVidautil.setText(" ");
 
-        jTextFieldCantidadPasajeros2.setText(" ");
+        jTextFieldNombrebus.setText(" ");
 
         ButtonCrear.setBackground(new java.awt.Color(0, 0, 205));
         ButtonCrear.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
@@ -92,11 +119,23 @@ public class JDialogGestionFlotilla extends javax.swing.JDialog {
         ButtonActualizar.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         ButtonActualizar.setForeground(new java.awt.Color(255, 255, 255));
         ButtonActualizar.setText("Actualizar");
+        ButtonActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonActualizarActionPerformed(evt);
+            }
+        });
 
         ButtonEliminar.setBackground(new java.awt.Color(255, 0, 51));
         ButtonEliminar.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         ButtonEliminar.setForeground(new java.awt.Color(255, 255, 255));
         ButtonEliminar.setText("Eliminar");
+        ButtonEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonEliminarActionPerformed(evt);
+            }
+        });
+
+        LbError.setText(" ");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -111,7 +150,11 @@ public class JDialogGestionFlotilla extends javax.swing.JDialog {
                             .addComponent(jLabelCantidaPasajeros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(20, 20, 20)
-                                .addComponent(jLabelPlaca, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(LbError, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addComponent(jLabelPlaca, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(15, 15, 15)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -131,7 +174,7 @@ public class JDialogGestionFlotilla extends javax.swing.JDialog {
                         .addComponent(jTextFieldVidautil, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(85, 85, 85))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jTextFieldCantidadPasajeros2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextFieldNombrebus, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(90, 90, 90))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jTextFieldCantidadPasajeros, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -148,7 +191,9 @@ public class JDialogGestionFlotilla extends javax.swing.JDialog {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(65, 65, 65)
+                .addContainerGap()
+                .addComponent(LbError)
+                .addGap(43, 43, 43)
                 .addComponent(jLabelPlaca)
                 .addGap(18, 18, 18)
                 .addComponent(jTextFieldPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -159,7 +204,7 @@ public class JDialogGestionFlotilla extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addComponent(jLabelNombrebus)
                 .addGap(18, 18, 18)
-                .addComponent(jTextFieldCantidadPasajeros2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTextFieldNombrebus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabelPlaca1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -177,7 +222,7 @@ public class JDialogGestionFlotilla extends javax.swing.JDialog {
                     .addContainerGap(511, Short.MAX_VALUE)))
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTGestionFlotilla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -188,7 +233,7 @@ public class JDialogGestionFlotilla extends javax.swing.JDialog {
                 "Placa", "Cantidad Pasajeros", "Nombre", "Vida Util"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTGestionFlotilla);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -232,6 +277,48 @@ public class JDialogGestionFlotilla extends javax.swing.JDialog {
     private void ButtonCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonCrearActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ButtonCrearActionPerformed
+
+    private void ButtonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonActualizarActionPerformed
+   for (int i = 0; i < 10; i++) {
+
+            if (gestionflotilla.get(i).getPlaca().equals(Placa))
+            {
+              
+//                
+                gestionflotilla.get(i).setPlaca(jTextPlaca.getText());
+                gestionflotilla.get(i).setCantidadPasajeros(jTextFieldCantidadPasajeros.getText());
+                gestionflotilla.get(i).setNombreBus(jTextFieldNombrebus.getText());
+                               gestionflotilla.get(i).setVidaUtil(Integer.parseInt(jTextFieldVidautil.getText()));
+                
+                ContextTXTGestionFlotilla.LeerDatos();
+                limpiarDataProfesor();
+                showTable();
+
+            }
+
+        }
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ButtonActualizarActionPerformed
+
+    private void ButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonEliminarActionPerformed
+ try {
+            for (int i = 0; i < gestionflotilla.size(); i++) {
+                if (gestionflotilla.get(i).getPlaca().equals(Placa)) {
+                    gestionflotilla.remove(i);
+                     ContextTXTGestionFlotilla.Guardardatos(gestionflotilla);
+                    limpiarDataProfesor();
+                    showTable();
+                }
+
+            }
+        } catch (Exception e) {
+            LbError.setText("Error al eliminar el profesor");
+
+        }
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ButtonEliminarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -279,6 +366,7 @@ public class JDialogGestionFlotilla extends javax.swing.JDialog {
     private javax.swing.JButton ButtonActualizar;
     private javax.swing.JButton ButtonCrear;
     private javax.swing.JButton ButtonEliminar;
+    private javax.swing.JLabel LbError;
     private javax.swing.JLabel jLabelCantidaPasajeros;
     private javax.swing.JLabel jLabelNombrebus;
     private javax.swing.JLabel jLabelPlaca;
@@ -288,9 +376,9 @@ public class JDialogGestionFlotilla extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTGestionFlotilla;
     private javax.swing.JTextField jTextFieldCantidadPasajeros;
-    private javax.swing.JTextField jTextFieldCantidadPasajeros2;
+    private javax.swing.JTextField jTextFieldNombrebus;
     private javax.swing.JTextField jTextFieldPlaca;
     private javax.swing.JTextField jTextFieldVidautil;
     private javax.swing.JTextField jTextPlaca;
