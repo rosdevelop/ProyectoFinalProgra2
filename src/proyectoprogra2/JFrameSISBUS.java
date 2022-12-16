@@ -4,6 +4,8 @@
  */
 package proyectoprogra2;
 
+import static proyectoprogra2.JDialogGestionViajes.ListaGesVia;
+
 /**
  *
  * @author rosbinvasquez
@@ -15,6 +17,7 @@ public class JFrameSISBUS extends javax.swing.JFrame {
      */
     public JFrameSISBUS() {
         initComponents();
+        ShowTableGestionViaje();
     }
 
     /**
@@ -37,9 +40,9 @@ public class JFrameSISBUS extends javax.swing.JFrame {
         BtnCerrarSesion = new javax.swing.JButton();
         BtnIterar = new javax.swing.JButton();
         BtnGestionViajes = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
+        BtnVentaTickets = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        JTableGeneral = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -58,12 +61,22 @@ public class JFrameSISBUS extends javax.swing.JFrame {
         BtnGestionFlotilla.setText("Gestionar Flotilla");
         BtnGestionFlotilla.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 102), 3));
         BtnGestionFlotilla.setContentAreaFilled(false);
+        BtnGestionFlotilla.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnGestionFlotillaActionPerformed(evt);
+            }
+        });
 
         BtnGestionRutas.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         BtnGestionRutas.setForeground(new java.awt.Color(0, 102, 102));
         BtnGestionRutas.setText("Gestionar Rutas");
         BtnGestionRutas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 102), 3));
         BtnGestionRutas.setContentAreaFilled(false);
+        BtnGestionRutas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnGestionRutasActionPerformed(evt);
+            }
+        });
 
         BtnGestionChoferes.setBackground(new java.awt.Color(243, 249, 249));
         BtnGestionChoferes.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
@@ -84,6 +97,11 @@ public class JFrameSISBUS extends javax.swing.JFrame {
         BtnAdministrador.setText("Administradores");
         BtnAdministrador.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 102), 3));
         BtnAdministrador.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtnAdministrador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnAdministradorActionPerformed(evt);
+            }
+        });
 
         BtnCerrarSesion.setBackground(new java.awt.Color(137, 8, 8));
         BtnCerrarSesion.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
@@ -102,18 +120,39 @@ public class JFrameSISBUS extends javax.swing.JFrame {
         BtnIterar.setBorderPainted(false);
         BtnIterar.setContentAreaFilled(false);
         BtnIterar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtnIterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnIterarActionPerformed(evt);
+            }
+        });
 
         BtnGestionViajes.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         BtnGestionViajes.setForeground(new java.awt.Color(0, 102, 102));
         BtnGestionViajes.setText("Gestión Viajes");
         BtnGestionViajes.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 102), 3));
         BtnGestionViajes.setContentAreaFilled(false);
+        BtnGestionViajes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtnGestionViajes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnGestionViajesActionPerformed(evt);
+            }
+        });
 
-        jButton8.setText("jButton8");
+        BtnVentaTickets.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        BtnVentaTickets.setForeground(new java.awt.Color(0, 102, 102));
+        BtnVentaTickets.setText("Venta de Tickets");
+        BtnVentaTickets.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 102), 3));
+        BtnVentaTickets.setContentAreaFilled(false);
+        BtnVentaTickets.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtnVentaTickets.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnVentaTicketsActionPerformed(evt);
+            }
+        });
 
-        jTable1.setBackground(new java.awt.Color(243, 249, 249));
-        jTable1.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        JTableGeneral.setBackground(new java.awt.Color(243, 249, 249));
+        JTableGeneral.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        JTableGeneral.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -121,12 +160,12 @@ public class JFrameSISBUS extends javax.swing.JFrame {
                 "ID Viaje", "Nombre Chofer", "Nombre Ruta", "Fecha de Viaje", "Hora"
             }
         ));
-        jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jTable1.setDropMode(javax.swing.DropMode.ON);
-        jTable1.setGridColor(new java.awt.Color(243, 249, 249));
-        jTable1.setSelectionBackground(new java.awt.Color(243, 249, 249));
-        jTable1.setSelectionForeground(new java.awt.Color(243, 249, 249));
-        jScrollPane1.setViewportView(jTable1);
+        JTableGeneral.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        JTableGeneral.setDropMode(javax.swing.DropMode.ON);
+        JTableGeneral.setGridColor(new java.awt.Color(243, 249, 249));
+        JTableGeneral.setSelectionBackground(new java.awt.Color(51, 51, 51));
+        JTableGeneral.setSelectionForeground(new java.awt.Color(0, 102, 102));
+        jScrollPane1.setViewportView(JTableGeneral);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -134,32 +173,36 @@ public class JFrameSISBUS extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(11, 11, 11)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addComponent(jLabel1)
+                .addGap(52, 52, 52)
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(77, 77, 77)
+                .addComponent(BtnCerrarSesion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(34, 34, 34))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(BtnGestionFlotilla, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(BtnGestionRutas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(BtnAdministrador, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(BtnGestionChoferes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)))
-                        .addGap(41, 41, 41)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 632, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(BtnIterar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(94, 94, 94)
-                                .addComponent(BtnGestionViajes, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(88, 88, 88)
-                                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 1, Short.MAX_VALUE)))
-                        .addContainerGap(25, Short.MAX_VALUE))
+                        .addGap(11, 11, 11)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(BtnGestionRutas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(BtnGestionChoferes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(BtnGestionFlotilla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(37, 37, 37))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(BtnAdministrador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(42, 42, 42)))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(52, 52, 52)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(BtnCerrarSesion)
-                        .addGap(34, 34, 34))))
+                        .addGap(8, 8, 8)
+                        .addComponent(jScrollPane1))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(BtnIterar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(94, 94, 94)
+                        .addComponent(BtnGestionViajes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(96, 96, 96)
+                        .addComponent(BtnVentaTickets, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(18, 18, 18))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -167,25 +210,28 @@ public class JFrameSISBUS extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(52, 52, 52)
+                        .addGap(60, 60, 60)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(BtnCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))))
-                .addGap(25, 25, 25)
+                            .addComponent(BtnCerrarSesion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
+                                .addGap(7, 7, 7)))
+                        .addGap(15, 15, 15)))
+                .addGap(40, 40, 40)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BtnGestionViajes, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BtnGestionFlotilla, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtnGestionViajes, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtnGestionFlotilla, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BtnIterar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(BtnVentaTickets, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(44, 44, 44)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(BtnGestionRutas, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(80, 80, 80)
-                        .addComponent(BtnGestionChoferes, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(BtnAdministrador, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(BtnGestionRutas, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(64, 64, 64)
+                        .addComponent(BtnGestionChoferes, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                        .addComponent(BtnAdministrador, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGap(22, 22, 22))
         );
 
@@ -195,8 +241,8 @@ public class JFrameSISBUS extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -210,7 +256,7 @@ public class JFrameSISBUS extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -221,12 +267,58 @@ public class JFrameSISBUS extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnGestionChoferesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGestionChoferesActionPerformed
-        // TODO add your handling code here:
+        JDialogGestionChoferes jdChoferes = new JDialogGestionChoferes(this, true);
+        jdChoferes.setVisible(true);
     }//GEN-LAST:event_BtnGestionChoferesActionPerformed
 
     private void BtnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCerrarSesionActionPerformed
-        // TODO add your handling code here:
+        JFrameLogin login = new JFrameLogin();
+        login.setVisible(true);
+        dispose();
     }//GEN-LAST:event_BtnCerrarSesionActionPerformed
+
+    private void BtnAdministradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAdministradorActionPerformed
+        JDialogAdministradores jdAdmi = new JDialogAdministradores(this, true);
+        jdAdmi.setVisible(true);
+    }//GEN-LAST:event_BtnAdministradorActionPerformed
+
+    private void BtnGestionRutasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGestionRutasActionPerformed
+        JDialogGestionRutas jdRutas = new JDialogGestionRutas(this, true);
+        jdRutas.setVisible(true);
+    }//GEN-LAST:event_BtnGestionRutasActionPerformed
+
+    private void BtnGestionFlotillaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGestionFlotillaActionPerformed
+        JDialogGestionFlotilla jdFlotilla = new JDialogGestionFlotilla(this, true);
+        jdFlotilla.setVisible(true);
+    }//GEN-LAST:event_BtnGestionFlotillaActionPerformed
+
+    private void BtnGestionViajesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGestionViajesActionPerformed
+        JDialogGestionViajes jdViajes = new JDialogGestionViajes(this, true);
+        jdViajes.setVisible(true);
+    }//GEN-LAST:event_BtnGestionViajesActionPerformed
+
+    private void BtnIterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnIterarActionPerformed
+        ShowTableGestionViaje();
+    }//GEN-LAST:event_BtnIterarActionPerformed
+
+    private void BtnVentaTicketsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnVentaTicketsActionPerformed
+        JDialogVentaTicket jdTicket = new JDialogVentaTicket(this, true);
+        jdTicket.setVisible(true);
+    }//GEN-LAST:event_BtnVentaTicketsActionPerformed
+
+    public void ShowTableGestionViaje() {
+        String GestViaje[][] = new String[ListaGesVia.size()][4];
+
+        for (int i = 0; i < ListaGesVia.size(); i++) {
+            GestViaje[i][0] = ListaGesVia.get(i).getIdViaje();
+            GestViaje[i][1] = ListaGesVia.get(i).getCedulaChofer();
+            GestViaje[i][2] = ListaGesVia.get(i).getFecha();
+            GestViaje[i][3] = ListaGesVia.get(i).getHora();
+        }
+
+        JTableGeneral.setModel(new javax.swing.table.DefaultTableModel(GestViaje, new String[]{"Id Viaje", "Cedula", "Fecha", "Hora"}));
+
+    }
 
     /**
      * @param args the command line arguments
@@ -271,12 +363,12 @@ public class JFrameSISBUS extends javax.swing.JFrame {
     private javax.swing.JButton BtnGestionRutas;
     private javax.swing.JButton BtnGestionViajes;
     private javax.swing.JButton BtnIterar;
-    private javax.swing.JButton jButton8;
+    private javax.swing.JButton BtnVentaTickets;
+    private javax.swing.JTable JTableGeneral;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

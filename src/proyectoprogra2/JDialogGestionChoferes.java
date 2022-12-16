@@ -100,6 +100,12 @@ public class JDialogGestionChoferes extends javax.swing.JDialog {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Nombre");
 
+        TextNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TextNombreActionPerformed(evt);
+            }
+        });
+
         jLabel3.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(4, 88, 96));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -359,6 +365,10 @@ public class JDialogGestionChoferes extends javax.swing.JDialog {
         ContextTXTGestionChoferes.GuardarDatos(ListaChofe);
         LimpiarCasillas();
         showTable();    }//GEN-LAST:event_ButtonCrearActionPerformed
+
+    private void TextNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TextNombreActionPerformed
 
     /**
      * @param args the command line arguments

@@ -86,6 +86,7 @@ public class JFrameLogin extends javax.swing.JFrame {
         BtnIngresar.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         BtnIngresar.setForeground(new java.awt.Color(255, 255, 255));
         BtnIngresar.setText("INGRESAR");
+        BtnIngresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BtnIngresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnIngresarActionPerformed(evt);
@@ -96,6 +97,7 @@ public class JFrameLogin extends javax.swing.JFrame {
         BtnRegistrarse.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         BtnRegistrarse.setForeground(new java.awt.Color(255, 255, 255));
         BtnRegistrarse.setText("REGISTRARSE");
+        BtnRegistrarse.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BtnRegistrarse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnRegistrarseActionPerformed(evt);
