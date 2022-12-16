@@ -78,6 +78,7 @@ public class JDialogGestionChoferes extends javax.swing.JDialog {
         ButtonCrear = new javax.swing.JButton();
         ButtonActualizar = new javax.swing.JButton();
         ButtonEliminar = new javax.swing.JButton();
+        BtnSalir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -238,6 +239,16 @@ public class JDialogGestionChoferes extends javax.swing.JDialog {
             }
         });
 
+        BtnSalir.setBackground(new java.awt.Color(255, 0, 51));
+        BtnSalir.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        BtnSalir.setForeground(new java.awt.Color(255, 255, 255));
+        BtnSalir.setText("Salir");
+        BtnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnSalirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -245,20 +256,23 @@ public class JDialogGestionChoferes extends javax.swing.JDialog {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(47, 47, 47)
                 .addComponent(ButtonCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(100, 100, 100)
+                .addGap(74, 74, 74)
                 .addComponent(ButtonActualizar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 114, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
                 .addComponent(ButtonEliminar)
-                .addGap(116, 116, 116))
+                .addGap(77, 77, 77)
+                .addComponent(BtnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(32, 32, 32)
+                .addGap(31, 31, 31)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ButtonCrear)
                     .addComponent(ButtonActualizar)
-                    .addComponent(ButtonEliminar))
+                    .addComponent(ButtonEliminar)
+                    .addComponent(BtnSalir))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -272,7 +286,7 @@ public class JDialogGestionChoferes extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(11, Short.MAX_VALUE))
+                        .addContainerGap())
                     .addComponent(jScrollPane1)))
         );
         layout.setVerticalGroup(
@@ -370,6 +384,12 @@ public class JDialogGestionChoferes extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_TextNombreActionPerformed
 
+    private void BtnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSalirActionPerformed
+        JFrameSISBUS sisbus = new JFrameSISBUS();
+        sisbus.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_BtnSalirActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -413,6 +433,7 @@ public class JDialogGestionChoferes extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnSalir;
     private javax.swing.JButton ButtonActualizar;
     private javax.swing.JButton ButtonCrear;
     private javax.swing.JButton ButtonEliminar;

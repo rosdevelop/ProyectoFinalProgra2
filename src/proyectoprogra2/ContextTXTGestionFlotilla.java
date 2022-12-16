@@ -79,7 +79,7 @@ public class ContextTXTGestionFlotilla {
                 fl.setPlaca(String.valueOf(delimitar.next()));
                 fl.setCantidadPasajeros(String.valueOf(delimitar.next()));
                 fl.setNombreBus(String.valueOf(delimitar.next()));
-                fl.setVidaUtil(Integer.parseInt(delimitar.next()));
+                fl.setVidaUtil(String.valueOf(delimitar.next()));
                 listaFlotilla.add(fl);
             }
             scanner.close();

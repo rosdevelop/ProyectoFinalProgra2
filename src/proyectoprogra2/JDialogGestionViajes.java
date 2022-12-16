@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 import static proyectoprogra2.JDialogGestionChoferes.ListaChofe;
-import static proyectoprogra2.JDialogGestionFlotilla.gestionflotilla;
 import static proyectoprogra2.JDialogGestionRutas.gestionrutas;
 
 /**

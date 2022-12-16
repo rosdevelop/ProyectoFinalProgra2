@@ -269,6 +269,7 @@ public class JFrameSISBUS extends javax.swing.JFrame {
     private void BtnGestionChoferesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGestionChoferesActionPerformed
         JDialogGestionChoferes jdChoferes = new JDialogGestionChoferes(this, true);
         jdChoferes.setVisible(true);
+        dispose();
     }//GEN-LAST:event_BtnGestionChoferesActionPerformed
 
     private void BtnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCerrarSesionActionPerformed
@@ -280,16 +281,19 @@ public class JFrameSISBUS extends javax.swing.JFrame {
     private void BtnAdministradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAdministradorActionPerformed
         JDialogAdministradores jdAdmi = new JDialogAdministradores(this, true);
         jdAdmi.setVisible(true);
+        dispose();
     }//GEN-LAST:event_BtnAdministradorActionPerformed
 
     private void BtnGestionRutasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGestionRutasActionPerformed
         JDialogGestionRutas jdRutas = new JDialogGestionRutas(this, true);
         jdRutas.setVisible(true);
+        dispose();
     }//GEN-LAST:event_BtnGestionRutasActionPerformed
 
     private void BtnGestionFlotillaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGestionFlotillaActionPerformed
         JDialogGestionFlotilla jdFlotilla = new JDialogGestionFlotilla(this, true);
         jdFlotilla.setVisible(true);
+        dispose();
     }//GEN-LAST:event_BtnGestionFlotillaActionPerformed
 
     private void BtnGestionViajesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGestionViajesActionPerformed
@@ -304,6 +308,7 @@ public class JFrameSISBUS extends javax.swing.JFrame {
     private void BtnVentaTicketsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnVentaTicketsActionPerformed
         JDialogVentaTicket jdTicket = new JDialogVentaTicket(this, true);
         jdTicket.setVisible(true);
+        dispose();
     }//GEN-LAST:event_BtnVentaTicketsActionPerformed
 
     public void ShowTableGestionViaje() {

@@ -82,7 +82,7 @@ public class ContextTXTGestionRuta {
                 ru.setSalida(String.valueOf(delimitar.next()));
                 ru.setLLegada(String.valueOf(delimitar.next()));
                 ru.setRuta(String.valueOf(delimitar.next()));
-                  ru.setHora(String.valueOf(delimitar.next()));
+                ru.setHora(String.valueOf(delimitar.next()));
                 listaRutas.add(ru);
             }
             scanner.close();

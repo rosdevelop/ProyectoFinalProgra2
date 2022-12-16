@@ -16,9 +16,9 @@ public class GestionFlotilla {
     private String Placa;
     private String CantidadPasajeros;
     private String NombreBus;
-    private int VidaUtil;
+    private String VidaUtil;
 
-    public GestionFlotilla(String Placa, String CantidadPasajeros, String NombreBus, int VidaUtil) {
+    public GestionFlotilla(String Placa, String CantidadPasajeros, String NombreBus, String VidaUtil) {
         /**
         *
         *@param arg Contructores con parametros flotilla
@@ -37,7 +37,7 @@ public class GestionFlotilla {
         this.Placa = "";
         this.CantidadPasajeros = "";
         this.NombreBus = "";
-        this.VidaUtil = 0;
+        this.VidaUtil = "";
     }
 
     public String getPlaca() {
@@ -64,11 +64,11 @@ public class GestionFlotilla {
         this.NombreBus = NombreBus;
     }
 
-    public int getVidaUtil() {
+    public String getVidaUtil() {
         return VidaUtil;
     }
 
-    public void setVidaUtil(int VidaUtil) {
+    public void setVidaUtil(String VidaUtil) {
         this.VidaUtil = VidaUtil;
     }
         

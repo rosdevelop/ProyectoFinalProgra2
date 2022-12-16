@@ -3,45 +3,47 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
 package proyectoprogra2;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Sofia Murillo
  */
 public class JDialogGestionFlotilla extends javax.swing.JDialog {
-  static ArrayList<GestionFlotilla> gestionflotilla = new ArrayList<GestionFlotilla>();
-  static String Placa;
-static String CantidadPasajeros;
-static String NombreBus;
-static int VidaUtil;
 
-  
+    static ArrayList<GestionFlotilla> flo = new ArrayList<GestionFlotilla>();
+    static String NumPlaca;
+    static String CantidadPasajeros;
+    static String NombreBus;
+    static String VidaUtil;
+
     /**
      * Creates new form JDialogGestionFlotilla
      */
-    public JDialogGestionFlotilla(java.awt.Frame parent, boolean modal) { 
+    public JDialogGestionFlotilla(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-          cargarDatos();
-        LeerTabla();
+        cargarDatos();
+        TablaContenido();
         setLocationRelativeTo(null);
-        
-          jTGestionFlotilla.addMouseListener(new MouseAdapter() {
+
+        JtGestionFlotilla.addMouseListener(new MouseAdapter() {
             DefaultTableModel model = new DefaultTableModel();
 
             @Override
             public void mouseClicked(MouseEvent e) {
-                int i = jTGestionFlotilla.getSelectedRow();
-                    Placa = jTGestionFlotilla.getValueAt(i, 0).toString();
-                CantidadPasajeros= jTGestionFlotilla.getValueAt(i, 1).toString();
-                NombreBus = jTGestionFlotilla.getValueAt(i, 2).toString();
-                VidaUtil = Integer.valueOf(jTGestionFlotilla.getValueAt(i, 3).toString());
+                int i = JtGestionFlotilla.getSelectedRow();
+                NumPlaca = JtGestionFlotilla.getValueAt(i, 0).toString();
+                CantidadPasajeros = JtGestionFlotilla.getValueAt(i, 1).toString();
+                NombreBus = JtGestionFlotilla.getValueAt(i, 2).toString();
+                VidaUtil = JtGestionFlotilla.getValueAt(i, 3).toString();
             }
-   });
-       
+        });
+
     }
 
     /**
@@ -55,21 +57,23 @@ static int VidaUtil;
 
         jPanel1 = new javax.swing.JPanel();
         jLabelPlaca = new javax.swing.JLabel();
-        jTextFieldPlaca = new javax.swing.JTextField();
+        TxtPlaca = new javax.swing.JTextField();
         jLabelPlaca1 = new javax.swing.JLabel();
         jLabelPlaca2 = new javax.swing.JLabel();
         jLabelNombrebus = new javax.swing.JLabel();
         jLabelCantidaPasajeros = new javax.swing.JLabel();
-        jTextFieldCantidadPasajeros = new javax.swing.JTextField();
-        jTextFieldVidautil = new javax.swing.JTextField();
-        jTextFieldNombrebus = new javax.swing.JTextField();
-        ButtonCrear = new javax.swing.JButton();
+        TxtPasajeros = new javax.swing.JTextField();
+        TxtVida = new javax.swing.JTextField();
+        TxtBus = new javax.swing.JTextField();
+        BtnCrear = new javax.swing.JButton();
         ButtonActualizar = new javax.swing.JButton();
         ButtonEliminar = new javax.swing.JButton();
         LbError = new javax.swing.JLabel();
+        BtnSalir = new javax.swing.JButton();
+        JLabelError = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTGestionFlotilla = new javax.swing.JTable();
+        JtGestionFlotilla = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -81,7 +85,7 @@ static int VidaUtil;
         jLabelPlaca.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelPlaca.setText("Placa");
 
-        jTextFieldPlaca.setText(" ");
+        TxtPlaca.setText(" ");
 
         jLabelPlaca1.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jLabelPlaca1.setForeground(new java.awt.Color(4, 88, 96));
@@ -102,19 +106,19 @@ static int VidaUtil;
         jLabelCantidaPasajeros.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelCantidaPasajeros.setText("Cantidad Pasajeros");
 
-        jTextFieldCantidadPasajeros.setText(" ");
+        TxtPasajeros.setText(" ");
 
-        jTextFieldVidautil.setText(" ");
+        TxtVida.setText(" ");
 
-        jTextFieldNombrebus.setText(" ");
+        TxtBus.setText(" ");
 
-        ButtonCrear.setBackground(new java.awt.Color(8, 31, 135));
-        ButtonCrear.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        ButtonCrear.setForeground(new java.awt.Color(255, 255, 255));
-        ButtonCrear.setText("Crear");
-        ButtonCrear.addActionListener(new java.awt.event.ActionListener() {
+        BtnCrear.setBackground(new java.awt.Color(8, 31, 135));
+        BtnCrear.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        BtnCrear.setForeground(new java.awt.Color(255, 255, 255));
+        BtnCrear.setText("Crear");
+        BtnCrear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButtonCrearActionPerformed(evt);
+                BtnCrearActionPerformed(evt);
             }
         });
 
@@ -140,6 +144,16 @@ static int VidaUtil;
 
         LbError.setText(" ");
 
+        BtnSalir.setBackground(new java.awt.Color(153, 0, 0));
+        BtnSalir.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        BtnSalir.setForeground(new java.awt.Color(255, 255, 255));
+        BtnSalir.setText("Salir");
+        BtnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnSalirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -154,36 +168,40 @@ static int VidaUtil;
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(20, 20, 20)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabelPlaca, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(LbError, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addComponent(jLabelPlaca, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(JLabelError)
+                                        .addGap(53, 53, 53))))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(15, 15, 15)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelPlaca1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(ButtonCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(BtnCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(ButtonActualizar)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(BtnSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(ButtonActualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(18, 18, 18)
                                 .addComponent(ButtonEliminar)
-                                .addGap(0, 13, Short.MAX_VALUE))
-                            .addComponent(jLabelPlaca1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addGap(0, 13, Short.MAX_VALUE)))))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jTextFieldVidautil, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(TxtVida, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(85, 85, 85))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jTextFieldNombrebus, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(TxtBus, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(90, 90, 90))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jTextFieldCantidadPasajeros, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(TxtPasajeros, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(101, 101, 101))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jTextFieldPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(TxtPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(101, 101, 101))))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
@@ -195,29 +213,33 @@ static int VidaUtil;
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(LbError)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(LbError)
+                    .addComponent(JLabelError))
                 .addGap(43, 43, 43)
                 .addComponent(jLabelPlaca)
                 .addGap(18, 18, 18)
-                .addComponent(jTextFieldPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(TxtPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
                 .addComponent(jLabelCantidaPasajeros)
                 .addGap(18, 18, 18)
-                .addComponent(jTextFieldCantidadPasajeros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(TxtPasajeros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabelNombrebus)
                 .addGap(18, 18, 18)
-                .addComponent(jTextFieldNombrebus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(TxtBus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabelPlaca1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextFieldVidautil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(TxtVida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(80, 80, 80)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ButtonCrear)
+                    .addComponent(BtnCrear)
                     .addComponent(ButtonActualizar)
                     .addComponent(ButtonEliminar))
-                .addContainerGap(158, Short.MAX_VALUE))
+                .addGap(35, 35, 35)
+                .addComponent(BtnSalir)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(79, 79, 79)
@@ -228,27 +250,27 @@ static int VidaUtil;
         jPanel3.setBackground(new java.awt.Color(243, 249, 249));
         jPanel3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jTGestionFlotilla.setBackground(new java.awt.Color(243, 249, 249));
-        jTGestionFlotilla.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jTGestionFlotilla.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jTGestionFlotilla.setModel(new javax.swing.table.DefaultTableModel(
+        JtGestionFlotilla.setAutoCreateRowSorter(true);
+        JtGestionFlotilla.setBackground(new java.awt.Color(243, 249, 249));
+        JtGestionFlotilla.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        JtGestionFlotilla.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        JtGestionFlotilla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Placa", "Cantidad Pasajeros", "Nombre", "Vida Util"
+                "ID", "Lugar salida", "Lugar Llegada", "Ruta", "Tiempo estimado"
             }
         ));
-        jTGestionFlotilla.setGridColor(new java.awt.Color(177, 221, 221));
-        jTGestionFlotilla.addMouseListener(new java.awt.event.MouseAdapter() {
+        JtGestionFlotilla.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTGestionFlotillaMouseClicked(evt);
+                JtGestionFlotillaMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(jTGestionFlotilla);
+        jScrollPane1.setViewportView(JtGestionFlotilla);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -257,13 +279,13 @@ static int VidaUtil;
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -286,80 +308,73 @@ static int VidaUtil;
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void ButtonCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonCrearActionPerformed
-       GestionFlotilla gestFlo = new  GestionFlotilla ();
-        gestFlo.setPlaca(jTextFieldPlaca.getText());
-        gestFlo.setCantidadPasajeros(jTextFieldCantidadPasajeros.getText());
-        gestFlo.setNombreBus(jTextFieldNombrebus.getText());
-        gestFlo.setVidaUtil(Integer.parseInt(jTextFieldVidautil.getText()));
-       
-
-        gestionflotilla.add(gestFlo);
-         ContextTXTGestionFlotilla.Guardardatos(gestionflotilla);
-              LeerTabla();
-              
-    
-              
-              
-              
-                // TODO add your handling code here:
-    }//GEN-LAST:event_ButtonCrearActionPerformed
+    private void BtnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCrearActionPerformed
+        GestionFlotilla gestFlo = new GestionFlotilla();
+        gestFlo.setPlaca(TxtPlaca.getText());
+        gestFlo.setCantidadPasajeros(TxtPasajeros.getText());
+        gestFlo.setNombreBus(TxtBus.getText());
+        gestFlo.setVidaUtil(TxtVida.getText());
+        
+        flo.add(gestFlo);
+        ContextTXTGestionFlotilla.Guardardatos(flo);
+        LimpiarCasillas();
+        TablaContenido();
+    }//GEN-LAST:event_BtnCrearActionPerformed
 
     private void ButtonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonActualizarActionPerformed
-   for (int i = 0; i < 10; i++) {
+        
+        for (int i = 0; i < 4; i++) {
 
-            if (gestionflotilla.get(i).getPlaca().equals(Placa))
-            {
-              
-//                
-                gestionflotilla.get(i).setPlaca(jTextFieldPlaca.getText());
-                gestionflotilla.get(i).setCantidadPasajeros(jTextFieldCantidadPasajeros.getText());
-                gestionflotilla.get(i).setNombreBus(jTextFieldNombrebus.getText());
-                               gestionflotilla.get(i).setVidaUtil(Integer.parseInt(jTextFieldVidautil.getText()));
+            if (flo.get(i).getPlaca().equals(NumPlaca)) {
                 
-                ContextTXTGestionFlotilla.LeerDatos();
-                 LeerTabla();
+                flo.get(i).setPlaca(TxtPlaca.getText());
+                flo.get(i).setCantidadPasajeros(TxtPasajeros.getText());
+                flo.get(i).setNombreBus(TxtBus.getText());
+                flo.get(i).setVidaUtil(TxtVida.getText());
+                
+                ContextTXTGestionFlotilla.Guardardatos(flo);
+                LimpiarCasillas();
+                TablaContenido();
 
             }
-
         }
 
-        // TODO add your handling code here:
     }//GEN-LAST:event_ButtonActualizarActionPerformed
 
     private void ButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonEliminarActionPerformed
- try {
-            for (int i = 0; i < gestionflotilla.size(); i++) {
-                if (gestionflotilla.get(i).getPlaca().equals(Placa)) {
-                    gestionflotilla.remove(i);
-                     ContextTXTGestionFlotilla.Guardardatos(gestionflotilla);
-                    
-                    LeerTabla();
+        try {
+            for (int i = 0; i < flo.size(); i++) {
+                if (flo.get(i).getPlaca().equals(NumPlaca)) {
+                    flo.remove(i);
+                    ContextTXTGestionFlotilla.Guardardatos(flo);
+                    LimpiarCasillas();
+                    TablaContenido();
                 }
 
             }
         } catch (Exception e) {
-            LbError.setText("Error al eliminar el profesor");
+            JLabelError.setText("Error al eliminar la flotilla");
 
         }
-
-        // TODO add your handling code here:
     }//GEN-LAST:event_ButtonEliminarActionPerformed
 
-    private void jTGestionFlotillaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTGestionFlotillaMouseClicked
-        jTextFieldPlaca.setText(Placa);
-        jTextFieldCantidadPasajeros.setText(CantidadPasajeros);
-        jTextFieldNombrebus.setText(NombreBus);
-         jTextFieldVidautil.setText(String.valueOf(VidaUtil));
-        ButtonCrear.setEnabled(false);
-        jTextFieldPlaca.setEnabled(false);
+    private void BtnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSalirActionPerformed
+        JFrameSISBUS sisbus = new JFrameSISBUS();
+        sisbus.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_BtnSalirActionPerformed
 
-         
-         
-             // TODO add your handling code here:
-    }//GEN-LAST:event_jTGestionFlotillaMouseClicked
- public void cargarDatos() {
-        gestionflotilla = ContextTXTGestionFlotilla.LeerDatos();
+    private void JtGestionFlotillaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JtGestionFlotillaMouseClicked
+        TxtPlaca.setText(NumPlaca);
+        TxtPasajeros.setText(CantidadPasajeros);
+        TxtBus.setText(NombreBus);
+        TxtVida.setText(VidaUtil);
+        BtnCrear.setEnabled(false);
+        TxtPlaca.setEnabled(false);       
+    }//GEN-LAST:event_JtGestionFlotillaMouseClicked
+
+    private void cargarDatos() {
+        flo = ContextTXTGestionFlotilla.LeerDatos();
     }
 
     /**
@@ -403,27 +418,41 @@ static int VidaUtil;
             }
         });
     }
-    public void LeerTabla() {
 
-        String GesFlofMat[][] = new String[gestionflotilla.size()][8];
+    private void TablaContenido() {
 
-        for (int i = 0; i < gestionflotilla.size(); i++) {
-            GesFlofMat[i][0] = gestionflotilla.get(i).getPlaca();
-            GesFlofMat[i][1] = gestionflotilla.get(i).getCantidadPasajeros();
-            GesFlofMat[i][2] = gestionflotilla.get(i).getNombreBus();
-           GesFlofMat[i][6] = String.valueOf(gestionflotilla.get(i).getVidaUtil());
-            
+        String flot[][] = new String[flo.size()][4];
+
+        for (int i = 0; i < flo.size(); i++) {
+            flot[i][0] = flo.get(i).getPlaca();
+            flot[i][1] = flo.get(i).getCantidadPasajeros();
+            flot[i][2] = flo.get(i).getNombreBus();
+            flot[i][3] = flo.get(i).getVidaUtil();
         }
-        jTGestionFlotilla.setModel(new javax.swing.table.DefaultTableModel(GesFlofMat, new String[]{"Placa", "Nombre", "Cantidad de Pasajeros", " Nombre Bus", "Vida Util (Km)"}));
+        JtGestionFlotilla.setModel(new javax.swing.table.DefaultTableModel(flot, new String[]{"Placa", "CantidadPasajeros", "NombreBus", " VidaUtil"}));
 
+    } 
+
+    private void LimpiarCasillas() {
+
+        TxtPlaca.setText("");
+        TxtPasajeros.setText("");
+        TxtBus.setText("");
+        TxtVida.setText("");
     }
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnCrear;
+    private javax.swing.JButton BtnSalir;
     private javax.swing.JButton ButtonActualizar;
-    private javax.swing.JButton ButtonCrear;
     private javax.swing.JButton ButtonEliminar;
+    private javax.swing.JLabel JLabelError;
+    private javax.swing.JTable JtGestionFlotilla;
     private javax.swing.JLabel LbError;
+    private javax.swing.JTextField TxtBus;
+    private javax.swing.JTextField TxtPasajeros;
+    private javax.swing.JTextField TxtPlaca;
+    private javax.swing.JTextField TxtVida;
     private javax.swing.JLabel jLabelCantidaPasajeros;
     private javax.swing.JLabel jLabelNombrebus;
     private javax.swing.JLabel jLabelPlaca;
@@ -432,10 +461,5 @@ static int VidaUtil;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTGestionFlotilla;
-    private javax.swing.JTextField jTextFieldCantidadPasajeros;
-    private javax.swing.JTextField jTextFieldNombrebus;
-    private javax.swing.JTextField jTextFieldPlaca;
-    private javax.swing.JTextField jTextFieldVidautil;
     // End of variables declaration//GEN-END:variables
 }
