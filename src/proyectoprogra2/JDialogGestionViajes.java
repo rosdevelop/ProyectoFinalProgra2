@@ -7,8 +7,11 @@ package proyectoprogra2;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 import static proyectoprogra2.JDialogGestionChoferes.ListaChofe;
+import static proyectoprogra2.JDialogGestionFlotilla.gestionflotilla;
+import static proyectoprogra2.JDialogGestionRutas.gestionrutas;
 
 /**
  *
@@ -17,6 +20,9 @@ import static proyectoprogra2.JDialogGestionChoferes.ListaChofe;
 public class JDialogGestionViajes extends javax.swing.JDialog {
     
     
+    DefaultComboBoxModel modelIdRuta = new DefaultComboBoxModel();
+     DefaultComboBoxModel modelPlaBus = new DefaultComboBoxModel();
+     DefaultComboBoxModel modelCeduChofe = new DefaultComboBoxModel();
     static ArrayList<GestionViajes> ListaGesVia = new ArrayList<GestionViajes>();
     String IDViaje;
     String PlacaBus;
@@ -99,21 +105,36 @@ public class JDialogGestionViajes extends javax.swing.JDialog {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Placa Bus");
 
-        CmbPlacaBus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        CmbPlacaBus.setModel(modelPlaBus);
+        CmbPlacaBus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CmbPlacaBusActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(4, 88, 96));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Cedula Chofer");
 
-        CmbCedulaChofer.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        CmbCedulaChofer.setModel(modelCeduChofe);
+        CmbCedulaChofer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CmbCedulaChoferActionPerformed(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(4, 88, 96));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("ID Ruta");
 
-        CmbIdRuta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        CmbIdRuta.setModel(modelIdRuta);
+        CmbIdRuta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CmbIdRutaActionPerformed(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(4, 88, 96));
@@ -372,6 +393,18 @@ public class JDialogGestionViajes extends javax.swing.JDialog {
         TextIdViaje.setEnabled(false);
     }//GEN-LAST:event_TblGestionViajeMouseClicked
 
+    private void CmbPlacaBusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CmbPlacaBusActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CmbPlacaBusActionPerformed
+
+    private void CmbCedulaChoferActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CmbCedulaChoferActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CmbCedulaChoferActionPerformed
+
+    private void CmbIdRutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CmbIdRutaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CmbIdRutaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -443,10 +476,84 @@ public class JDialogGestionViajes extends javax.swing.JDialog {
     }
 
     private void showTable() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+         String chof[][] = new String[ListaGesVia.size()][6];
+
+        for (int i = 0; i < ListaGesVia.size(); i++) {
+            chof[i][0] = ListaGesVia.get(i).getIdViaje();
+            chof[i][1] = ListaGesVia.get(i).getPlacaBus();
+            chof[i][2] = ListaGesVia.get(i).getCedulaChofer();
+            chof[i][3] = ListaGesVia.get(i).getIdRuta();
+            chof[i][4] = ListaGesVia.get(i).getFecha();
+            chof[i][5] = ListaGesVia.get(i).getHora();
+           
+        }
+        TblGestionViaje.setModel(new javax.swing.table.DefaultTableModel(chof, new String[]{"ID Viaje", "Placa Bus", "Cedula Chofer", "ID Ruta", "Fecha", "Hora"}));
+
     }
+    
 
     private void LimpiarCasillas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        TextIdViaje.setText("");
+        TextFecha.setText("");
+        TextHora.setText("");
+        TextIdViaje.setEnabled(true);
+        ButtonCrear.setEnabled(true);
     }
+    
+    
+    
+    
+    public void cargarDatosPlacaBusComboBox()
+    {
+
+         String VecPlaca [] = new String[gestionflotilla.size()];
+       gestionflotilla = ContextTXTGestionChoferes.LeerDatos();
+        for (int i = 0; i < gestionflotilla.size(); i++) 
+        {
+            VecPlaca[i] = gestionflotilla.get(i).getPlaca();
+        }
+         for (int i = 0; i < VecPlaca.length; i++)
+             modelPlaBus.addElement(VecPlaca);
+         }
+    
+    
+    
+    
+     public void cargarDatosCedulaChoferComboBox()
+    {
+         String VecCedulaCh [] = new String[ListaChofe.size()];
+       ListaChofe = ContextTXTGestionChoferes.LeerDatos();
+        for (int i = 0; i < ListaChofe.size(); i++) 
+        {
+            VecCedulaCh[i] = ListaChofe.get(i).getCedula();
+        }
+        for (int i = 0; i < VecCedulaCh.length; i++)
+        {
+            modelCeduChofe.addElement(VecCedulaCh[i]);  
+        }
+    }
+    
+    
+       public void cargarDatosIdRutaComboBox()
+    {
+         String VecRu [] = new String[gestionrutas.size()];
+       gestionrutas = ContextTXTGestionChoferes.LeerDatos();
+        for (int i = 0; i < gestionrutas.size(); i++) 
+        {
+            VecRu[i] = gestionrutas.get(i).getRuta();
+        }
+        for (int i = 0; i < VecRu.length; i++)
+        {
+            modelIdRuta.addElement(VecRu[i]);  
+        }
+    }
+    
+    
+    
+    
+    
 }
+
+

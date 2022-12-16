@@ -73,7 +73,8 @@ static int VidaUtil;
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(177, 221, 221));
+        jPanel1.setBackground(new java.awt.Color(243, 249, 249));
+        jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabelPlaca.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jLabelPlaca.setForeground(new java.awt.Color(4, 88, 96));
@@ -216,7 +217,7 @@ static int VidaUtil;
                     .addComponent(ButtonCrear)
                     .addComponent(ButtonActualizar)
                     .addComponent(ButtonEliminar))
-                .addContainerGap(164, Short.MAX_VALUE))
+                .addContainerGap(158, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(79, 79, 79)
@@ -224,9 +225,12 @@ static int VidaUtil;
                     .addContainerGap(511, Short.MAX_VALUE)))
         );
 
-        jPanel3.setBackground(new java.awt.Color(177, 221, 221));
+        jPanel3.setBackground(new java.awt.Color(243, 249, 249));
+        jPanel3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jTGestionFlotilla.setBackground(new java.awt.Color(177, 221, 221));
+        jTGestionFlotilla.setBackground(new java.awt.Color(243, 249, 249));
+        jTGestionFlotilla.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jTGestionFlotilla.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jTGestionFlotilla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -253,7 +257,7 @@ static int VidaUtil;
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

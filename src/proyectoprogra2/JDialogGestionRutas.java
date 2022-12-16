@@ -75,7 +75,8 @@ static String TiempoEstimado;
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jPanel2.setBackground(new java.awt.Color(177, 221, 221));
+        jPanel2.setBackground(new java.awt.Color(243, 249, 249));
+        jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabelPlaca.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jLabelPlaca.setForeground(new java.awt.Color(4, 88, 96));
@@ -241,8 +242,13 @@ static String TiempoEstimado;
                     .addContainerGap(511, Short.MAX_VALUE)))
         );
 
-        jPanel1.setBackground(new java.awt.Color(177, 221, 221));
+        jPanel1.setBackground(new java.awt.Color(243, 249, 249));
+        jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
+        jTableGestionRutas.setAutoCreateRowSorter(true);
+        jTableGestionRutas.setBackground(new java.awt.Color(243, 249, 249));
+        jTableGestionRutas.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jTableGestionRutas.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jTableGestionRutas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
