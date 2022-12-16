@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import static proyectoprogra2.JDialogGestionChoferes.ListaChofe;
+import static proyectoprogra2.JDialogGestionViajes.ListaGesVia;
 
 
 
@@ -23,7 +24,7 @@ public class JDialogVentaTicket extends javax.swing.JDialog {
     
     ArrayList<VentaTicket>lista = new ArrayList<>();
     ArrayList<VentaTicket>listaTxt = new ArrayList<>();
-    ArrayList<GestionViajes>listaViaje = new ArrayList<>();
+    ArrayList<GestionViajes>ListaGesVia = new ArrayList<>();
     ArrayList<GestionViajes>listaTxtViaje = new ArrayList<>();
     String IdViaje;
     String PlacaBus;
@@ -39,11 +40,11 @@ public class JDialogVentaTicket extends javax.swing.JDialog {
         cargarDatosTxt();
         cargarDatosTxtViajes();
         readDataTable();
-        String viaje [] = new String[listaViaje.size()];
+        String viaje [] = new String[ListaGesVia.size()];
         
-        for(int i = 0; i< listaViaje.size() ; i++)
+        for(int i = 0; i< ListaGesVia.size() ; i++)
         {
-          viaje[i] = listaViaje.get(i).getIdViaje();
+          viaje[i] = ListaGesVia.get(i).getIdViaje();
         }
         JCBoxIdViaje.setModel(new javax.swing.DefaultComboBoxModel<>(viaje));
         JCBoxIdViaje.setSelectedIndex(-1);
@@ -99,7 +100,7 @@ public class JDialogVentaTicket extends javax.swing.JDialog {
      public void cargarDatosTxtViajes()
      {
          listaTxtViaje = ContextTXTGestionViajes.LeerDatos();
-         listaViaje = listaTxtViaje;
+         ListaGesVia = listaTxtViaje;
      }
      /**
       * readDataTable
@@ -291,14 +292,14 @@ public class JDialogVentaTicket extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
     public void confirmarDatosViaje(){
         
-        for (int i = 0; i < listaViaje.size() ; i++) {
-            if(JCBoxIdViaje.getSelectedItem().toString().equals(listaViaje.get(i).getIdViaje()))
+        for (int i = 0; i < ListaGesVia.size() ; i++) {
+            if(JCBoxIdViaje.getSelectedItem().toString().equals(ListaGesVia.get(i).getIdViaje()))
             {
-                PlacaBus = listaViaje.get(i).getPlacaBus();
-                CedulaChofer = listaViaje.get(i).getCedulaChofer();
-                IdRuta = listaViaje.get(i).getIdRuta();
-                Fecha = listaViaje.get(i).getFecha();
-                Hora = listaViaje.get(i).getHora();
+                PlacaBus = ListaGesVia.get(i).getPlacaBus();
+                CedulaChofer = ListaGesVia.get(i).getCedulaChofer();
+                IdRuta = ListaGesVia.get(i).getIdRuta();
+                Fecha = ListaGesVia.get(i).getFecha();
+                Hora = ListaGesVia.get(i).getHora();
             
             }
         }
@@ -340,8 +341,8 @@ public class JDialogVentaTicket extends javax.swing.JDialog {
             confirmarDatosViaje();           
 
             
-            VentaTicket ventaticket = new VentaTicket(JCBoxIdViaje.getSelectedItem().toString(), PlacaBus, CedulaChofer, IdRuta, Fecha, Hora, Integer.parseInt(TxtCantidadTickets.getText()));
-            lista.add(ventaticket);
+          //  VentaTicket vt = new VentaTicket(JCBoxIdViaje.getSelectedItem().toString(),PlacaBus,CedulaChofer,IdRuta,Fecha,Hora,Integer.parseInt(TxtCantidadTickets.getText()));
+          //  lista.add(vt);
             updateTxt();
             LimpiarCasillas();
             readDataTable();      
