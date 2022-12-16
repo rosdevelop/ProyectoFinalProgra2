@@ -25,8 +25,8 @@ static String TiempoEstimado;
     public JDialogGestionRutas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        //cargarDatos();
-       // LeerTabla();
+       cargarData();
+        showTable();
         setLocationRelativeTo(null);
         
           jTableGestionRutas.addMouseListener(new MouseAdapter() {
@@ -254,6 +254,11 @@ static String TiempoEstimado;
                 "ID", "Lugar salida", "Lugar Llegada", "Ruta", "Tiempo estimado"
             }
         ));
+        jTableGestionRutas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableGestionRutasMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTableGestionRutas);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -300,7 +305,11 @@ static String TiempoEstimado;
         gestRuta.setHora(jTextFieldTiempoestimado.getText());
         gestionrutas.add(gestRuta);
         ContextTXTGestionFlotilla.Guardardatos(gestionrutas);
-      //  LeerTabla();
+        
+        
+         LimpiarCasillas();
+        showTable(); 
+      
         // TODO add your handling code here:
     }//GEN-LAST:event_ButtonCrearActionPerformed
 
@@ -318,7 +327,7 @@ static String TiempoEstimado;
                 gestionrutas.get(i).setHora(jTextFieldTiempoestimado.getText());
                     
                 ContextTXTGestionRuta.LeerDatos();
-             //   LeerTabla();
+               showTable();
 
             }
 
@@ -339,13 +348,26 @@ static String TiempoEstimado;
 
             }
         } catch (Exception e) {
-            LbError.setText("Error al eliminar el profesor");
+            LbError.setText("Error al eliminar ");
 
         }
 
         // TODO add your handling code here:
     }//GEN-LAST:event_ButtonEliminarActionPerformed
 
+    private void jTableGestionRutasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableGestionRutasMouseClicked
+        jTextFieldIdRuta.setText(IdRuta);
+        jTextFieldLugarSalida.setText(LugarSalida);
+        jTextFieldLugarLlegada.setText(LugarLlegada);
+        jTextFieldRuta.setText(Ruta);
+        jTextFieldTiempoestimado.setText(TiempoEstimado);
+        ButtonCrear.setEnabled(false);
+        jTextFieldIdRuta.setEnabled(false);        // TODO add your handling code here:
+    }//GEN-LAST:event_jTableGestionRutasMouseClicked
+private void cargarData() {
+        
+        gestionrutas = ContextTXTGestionRuta.LeerDatos();
+    }
     /**
      * @param args the command line arguments
      */
@@ -409,4 +431,41 @@ static String TiempoEstimado;
     private javax.swing.JTextField jTextFieldRuta;
     private javax.swing.JTextField jTextFieldTiempoestimado;
     // End of variables declaration//GEN-END:variables
+
+    
+
+    private void showTable() {
+        
+         String Ruta[][] = new String[gestionrutas.size()][6];
+
+        for (int i = 0; i < gestionrutas.size(); i++) {
+            Ruta[i][0] = gestionrutas.get(i).getId();
+            Ruta[i][1] = gestionrutas.get(i).getSalida();
+            Ruta[i][2] = gestionrutas.get(i).getLLegada();
+            Ruta[i][3] = gestionrutas.get(i).getRuta();
+            Ruta[i][4] = gestionrutas.get(i).getHora();
+           
+        }
+         jTableGestionRutas.setModel(new javax.swing.table.DefaultTableModel(Ruta, new String[]{"IdRuta", "Salida", "Llegada", " Ruta", "Hora"}));
+
+    }
+  
+    private void LimpiarCasillas() {
+        
+         jTextFieldIdRuta.setText("");
+        jTextFieldLugarSalida.setText("");
+        jTextFieldLugarLlegada.setText("");
+        jTextFieldRuta.setText("");
+        jTextFieldTiempoestimado.setText("");
+        jTextFieldIdRuta.setEnabled(true);
+        ButtonCrear.setEnabled(true);
+    }
+
+    private void updateTxt() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
+
+
+
+
