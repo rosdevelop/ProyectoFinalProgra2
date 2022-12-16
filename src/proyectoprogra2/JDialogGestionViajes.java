@@ -70,11 +70,11 @@ public class JDialogGestionViajes extends javax.swing.JDialog {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        CmbPlacaBus = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         TextIdViaje = new javax.swing.JTextField();
-        CmbPlacaBus = new javax.swing.JComboBox<>();
-        jLabel3 = new javax.swing.JLabel();
         CmbCedulaChofer = new javax.swing.JComboBox<>();
+        jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         CmbIdRuta = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
@@ -100,11 +100,6 @@ public class JDialogGestionViajes extends javax.swing.JDialog {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("ID Viaje");
 
-        jLabel2.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(4, 88, 96));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Placa Bus");
-
         CmbPlacaBus.setModel(modelPlaBus);
         CmbPlacaBus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -112,10 +107,10 @@ public class JDialogGestionViajes extends javax.swing.JDialog {
             }
         });
 
-        jLabel3.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(4, 88, 96));
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Cedula Chofer");
+        jLabel2.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(4, 88, 96));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Placa Bus");
 
         CmbCedulaChofer.setModel(modelCeduChofe);
         CmbCedulaChofer.addActionListener(new java.awt.event.ActionListener() {
@@ -123,6 +118,11 @@ public class JDialogGestionViajes extends javax.swing.JDialog {
                 CmbCedulaChoferActionPerformed(evt);
             }
         });
+
+        jLabel3.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(4, 88, 96));
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Cedula Chofer");
 
         jLabel4.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(4, 88, 96));
@@ -472,7 +472,8 @@ public class JDialogGestionViajes extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     private void cargarData() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        ListaGesVia = ContentTXTGestionViajes.LeerDatos();
     }
 
     private void showTable() {
@@ -509,7 +510,7 @@ public class JDialogGestionViajes extends javax.swing.JDialog {
     {
 
          String VecPlaca [] = new String[gestionflotilla.size()];
-       gestionflotilla = ContextTXTGestionChoferes.LeerDatos();
+       gestionflotilla = ContextTXTGestionFlotilla.LeerDatos();
         for (int i = 0; i < gestionflotilla.size(); i++) 
         {
             VecPlaca[i] = gestionflotilla.get(i).getPlaca();
@@ -539,7 +540,7 @@ public class JDialogGestionViajes extends javax.swing.JDialog {
        public void cargarDatosIdRutaComboBox()
     {
          String VecRu [] = new String[gestionrutas.size()];
-       gestionrutas = ContextTXTGestionChoferes.LeerDatos();
+       gestionrutas = ContextTXTGestionRuta.LeerDatos();
         for (int i = 0; i < gestionrutas.size(); i++) 
         {
             VecRu[i] = gestionrutas.get(i).getRuta();
