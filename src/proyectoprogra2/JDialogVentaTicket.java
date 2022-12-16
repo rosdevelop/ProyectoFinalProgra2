@@ -78,7 +78,7 @@ public class JDialogVentaTicket extends javax.swing.JDialog {
       */
      public void  updateTxt()
      {
-         ContentTXTVentaTicket.Guardardatos(lista);
+         ContextTXTVentaTicket.Guardardatos(lista);
      
          
      }
@@ -88,7 +88,7 @@ public class JDialogVentaTicket extends javax.swing.JDialog {
       */
      public void cargarDatosTxt()
      {
-         listaTxt = ContentTXTVentaTicket.LeerDatos();
+         listaTxt = ContextTXTVentaTicket.LeerDatos();
          lista = listaTxt;
      
      }
@@ -98,7 +98,7 @@ public class JDialogVentaTicket extends javax.swing.JDialog {
       */
      public void cargarDatosTxtViajes()
      {
-         listaTxtViaje = ContentTXTGestionViajes.LeerDatos();
+         listaTxtViaje = ContextTXTGestionViajes.LeerDatos();
          listaViaje = listaTxtViaje;
      }
      /**

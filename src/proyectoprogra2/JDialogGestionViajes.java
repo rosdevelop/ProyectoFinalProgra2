@@ -11,17 +11,17 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 import static proyectoprogra2.JDialogGestionChoferes.ListaChofe;
 import static proyectoprogra2.JDialogGestionRutas.gestionrutas;
+import static proyectoprogra2.JDialogGestionFlotilla.flo;
 
 /**
  *
  * @author jeaus
  */
 public class JDialogGestionViajes extends javax.swing.JDialog {
-    
-    
+
     DefaultComboBoxModel modelIdRuta = new DefaultComboBoxModel();
-     DefaultComboBoxModel modelPlaBus = new DefaultComboBoxModel();
-     DefaultComboBoxModel modelCeduChofe = new DefaultComboBoxModel();
+    DefaultComboBoxModel modelPlaBus = new DefaultComboBoxModel();
+    DefaultComboBoxModel modelCeduChofe = new DefaultComboBoxModel();
     static ArrayList<GestionViajes> ListaGesVia = new ArrayList<GestionViajes>();
     String IDViaje;
     String PlacaBus;
@@ -30,20 +30,25 @@ public class JDialogGestionViajes extends javax.swing.JDialog {
     String Fecha;
     String Hora;
 
-
     /**
      * Creates new form JDialogGestionViajes
      */
     public JDialogGestionViajes(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-         cargarData();
+        cargarData();
+        CargarDataChofer();
+        CargarDataPlacaBus();
+        CargarDatosIdRuta();
         showTable();
+        cargarDataChoferComboBox();
+        cargarDataPlacaBusComboBox();
+        cargarDatosIdRutaComboBox();
         setLocationRelativeTo(null);
         TblGestionViaje.addMouseListener(new MouseAdapter() {
             DefaultTableModel model = new DefaultTableModel();
-                
-                  @Override
+
+            @Override
             public void mouseClicked(MouseEvent e) {
                 int i = TblGestionViaje.getSelectedRow();
                 IDViaje = TblGestionViaje.getValueAt(i, 0).toString();
@@ -55,7 +60,7 @@ public class JDialogGestionViajes extends javax.swing.JDialog {
             }
 
         });
-                
+
     }
 
     /**
@@ -84,6 +89,7 @@ public class JDialogGestionViajes extends javax.swing.JDialog {
         ButtonCrear = new javax.swing.JButton();
         ButtonActualizar = new javax.swing.JButton();
         ButtonBorrar = new javax.swing.JButton();
+        BtnSalir = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -175,18 +181,32 @@ public class JDialogGestionViajes extends javax.swing.JDialog {
             }
         });
 
+        BtnSalir.setBackground(new java.awt.Color(153, 0, 51));
+        BtnSalir.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        BtnSalir.setForeground(new java.awt.Color(255, 255, 255));
+        BtnSalir.setText("Salir");
+        BtnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnSalirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(ButtonCrear)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(ButtonActualizar)
+                .addGap(20, 20, 20)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ButtonCrear)
+                    .addComponent(ButtonBorrar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(ButtonBorrar)
-                .addGap(51, 51, 51))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ButtonActualizar)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(BtnSalir)
+                        .addGap(12, 12, 12)))
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -194,9 +214,12 @@ public class JDialogGestionViajes extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ButtonCrear)
-                    .addComponent(ButtonActualizar)
-                    .addComponent(ButtonBorrar))
-                .addContainerGap(211, Short.MAX_VALUE))
+                    .addComponent(ButtonActualizar))
+                .addGap(27, 27, 27)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ButtonBorrar)
+                    .addComponent(BtnSalir))
+                .addContainerGap(106, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -217,8 +240,8 @@ public class JDialogGestionViajes extends javax.swing.JDialog {
                     .addComponent(TextFecha)
                     .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(TextHora))
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 105, Short.MAX_VALUE))
+            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -304,11 +327,11 @@ public class JDialogGestionViajes extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, Short.MAX_VALUE)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 549, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -324,7 +347,7 @@ public class JDialogGestionViajes extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1)
-                        .addGap(26, 26, 26))
+                        .addGap(275, 275, 275))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                         .addGap(104, 104, 104))))
@@ -334,34 +357,36 @@ public class JDialogGestionViajes extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ButtonCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonCrearActionPerformed
-        
+
         GestionViajes via = new GestionViajes();
         via.setIdViaje(TextIdViaje.getText());
         via.setFecha(TextFecha.getText());
         via.setHora(TextHora.getText());
-      
+        via.setPlacaBus((String) CmbPlacaBus.getSelectedItem());
+        via.setCedulaChofer((String) CmbCedulaChofer.getSelectedItem());
+        via.setIdRuta((String) CmbIdRuta.getSelectedItem());
         ListaGesVia.add(via);
-        ContextTXTGestionChoferes.GuardarDatos(ListaGesVia);
+        ContextTXTGestionViajes.GuarDatos(ListaGesVia);
         LimpiarCasillas();
-        showTable();   
-                            
-        
-        
+        showTable();
+
+
     }//GEN-LAST:event_ButtonCrearActionPerformed
 
     private void ButtonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonActualizarActionPerformed
-        
-        
+
         for (int i = 0; i < 10; i++) {
 
-            if (ListaGesVia.get(i).getIdViaje().equals(IDViaje))
-            {
+            if (ListaGesVia.get(i).getIdViaje().equals(IDViaje)) {
 
                 ListaGesVia.get(i).setIdViaje(TextIdViaje.getText());
-                ListaGesVia.get(i).setPlacaBus(TextFecha.getText());
-                ListaGesVia.get(i).setCedulaChofer(TextHora.getText());
+                ListaGesVia.get(i).setFecha(TextFecha.getText());
+                ListaGesVia.get(i).setHora(TextHora.getText());
+                ListaGesVia.get(i).setPlacaBus((String) CmbPlacaBus.getSelectedItem());
+                ListaGesVia.get(i).setCedulaChofer((String) CmbCedulaChofer.getSelectedItem());
+                ListaGesVia.get(i).setIdRuta((String) CmbIdRuta.getSelectedItem());
 
-                ContextTXTGestionRuta.Guardardatos(ListaGesVia);
+                ContextTXTGestionViajes.GuarDatos(ListaGesVia);
                 LimpiarCasillas();
                 showTable();
 
@@ -371,20 +396,20 @@ public class JDialogGestionViajes extends javax.swing.JDialog {
     }//GEN-LAST:event_ButtonActualizarActionPerformed
 
     private void ButtonBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBorrarActionPerformed
-        
-        for (int i = 0; i < ListaGesVia.size(); i++) {
-                if (ListaGesVia.get(i).getIdViaje().equals(IDViaje)) {
-                    ListaGesVia.remove(i);
-                    ContextTXTGestionRuta.Guardardatos(ListaGesVia);
-                    LimpiarCasillas();
-                    showTable();
-                }
 
-            }  
+        for (int i = 0; i < ListaGesVia.size(); i++) {
+            if (ListaGesVia.get(i).getIdViaje().equals(IDViaje)) {
+                ListaGesVia.remove(i);
+                ContextTXTGestionRuta.Guardardatos(ListaGesVia);
+                LimpiarCasillas();
+                showTable();
+            }
+
+        }
     }//GEN-LAST:event_ButtonBorrarActionPerformed
 
     private void TblGestionViajeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TblGestionViajeMouseClicked
-        
+
         TextIdViaje.setText(IDViaje);
         TextFecha.setText(Fecha);
         TextHora.setText(Hora);
@@ -403,6 +428,12 @@ public class JDialogGestionViajes extends javax.swing.JDialog {
     private void CmbIdRutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CmbIdRutaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_CmbIdRutaActionPerformed
+
+    private void BtnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSalirActionPerformed
+        JFrameSISBUS sisbus = new JFrameSISBUS();
+        sisbus.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_BtnSalirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -447,6 +478,7 @@ public class JDialogGestionViajes extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnSalir;
     private javax.swing.JButton ButtonActualizar;
     private javax.swing.JButton ButtonBorrar;
     private javax.swing.JButton ButtonCrear;
@@ -471,13 +503,25 @@ public class JDialogGestionViajes extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     private void cargarData() {
-        
-        ListaGesVia = ContentTXTGestionViajes.LeerDatos();
+
+        ListaGesVia = ContextTXTGestionViajes.LeerDatos();
+    }
+
+    public void CargarDataChofer() {
+        ListaChofe = ContextTXTGestionChoferes.LeerDatos();
+    }
+
+    public void CargarDataPlacaBus() {
+        flo = ContextTXTGestionFlotilla.LeerDatos();
+    }
+
+    public void CargarDatosIdRuta() {
+        gestionrutas = ContextTXTGestionRuta.LeerDatos();
     }
 
     private void showTable() {
-        
-         String chof[][] = new String[ListaGesVia.size()][6];
+
+        String chof[][] = new String[ListaGesVia.size()][6];
 
         for (int i = 0; i < ListaGesVia.size(); i++) {
             chof[i][0] = ListaGesVia.get(i).getIdViaje();
@@ -486,74 +530,52 @@ public class JDialogGestionViajes extends javax.swing.JDialog {
             chof[i][3] = ListaGesVia.get(i).getIdRuta();
             chof[i][4] = ListaGesVia.get(i).getFecha();
             chof[i][5] = ListaGesVia.get(i).getHora();
-           
+
         }
         TblGestionViaje.setModel(new javax.swing.table.DefaultTableModel(chof, new String[]{"ID Viaje", "Placa Bus", "Cedula Chofer", "ID Ruta", "Fecha", "Hora"}));
 
     }
-    
 
     private void LimpiarCasillas() {
-        
+
         TextIdViaje.setText("");
         TextFecha.setText("");
         TextHora.setText("");
         TextIdViaje.setEnabled(true);
         ButtonCrear.setEnabled(true);
     }
-    
-    
-    
-    
-    public void cargarDatosPlacaBusComboBox()
-    {
 
-         String VecPlaca [] = new String[gestionflotilla.size()];
-       gestionflotilla = ContextTXTGestionFlotilla.LeerDatos();
-        for (int i = 0; i < gestionflotilla.size(); i++) 
-        {
-            VecPlaca[i] = gestionflotilla.get(i).getPlaca();
+    public void cargarDataPlacaBusComboBox() {
+        String VecPlaca[] = new String[flo.size()];
+        flo = ContextTXTGestionFlotilla.LeerDatos();
+        for (int i = 0; i < flo.size(); i++) {
+            VecPlaca[i] = flo.get(i).getPlaca();
         }
-         for (int i = 0; i < VecPlaca.length; i++)
-             modelPlaBus.addElement(VecPlaca);
-         }
-    
-    
-    
-    
-     public void cargarDatosCedulaChoferComboBox()
-    {
-         String VecCedulaCh [] = new String[ListaChofe.size()];
-       ListaChofe = ContextTXTGestionChoferes.LeerDatos();
-        for (int i = 0; i < ListaChofe.size(); i++) 
-        {
-            VecCedulaCh[i] = ListaChofe.get(i).getCedula();
-        }
-        for (int i = 0; i < VecCedulaCh.length; i++)
-        {
-            modelCeduChofe.addElement(VecCedulaCh[i]);  
+        for (int i = 0; i < VecPlaca.length; i++) {
+            modelPlaBus.addElement(VecPlaca[i]);
         }
     }
-    
-    
-       public void cargarDatosIdRutaComboBox()
-    {
-         String VecRu [] = new String[gestionrutas.size()];
-       gestionrutas = ContextTXTGestionRuta.LeerDatos();
-        for (int i = 0; i < gestionrutas.size(); i++) 
-        {
-            VecRu[i] = gestionrutas.get(i).getRuta();
+
+    public void cargarDataChoferComboBox() {
+        String VecCedula[] = new String[ListaChofe.size()];
+        ListaChofe = ContextTXTGestionChoferes.LeerDatos();
+        for (int i = 0; i < ListaChofe.size(); i++) {
+            VecCedula[i] = ListaChofe.get(i).getCedula();
         }
-        for (int i = 0; i < VecRu.length; i++)
-        {
-            modelIdRuta.addElement(VecRu[i]);  
+        for (int i = 0; i < VecCedula.length; i++) {
+            modelCeduChofe.addElement(VecCedula[i]);
         }
     }
-    
-    
-    
-    
-    
+
+    public void cargarDatosIdRutaComboBox() {
+        String VecRu[] = new String[gestionrutas.size()];
+        gestionrutas = ContextTXTGestionRuta.LeerDatos();
+        for (int i = 0; i < gestionrutas.size(); i++) {
+            VecRu[i] = gestionrutas.get(i).getId();
+        }
+        for (int i = 0; i < VecRu.length; i++) {
+            modelIdRuta.addElement(VecRu[i]);
+        }
+    }
+
 }
-
-

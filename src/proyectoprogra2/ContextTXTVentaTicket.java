@@ -14,10 +14,10 @@ import java.util.Scanner;
  *
  * @author jeaus
  */
-public class ContentTXTGestionViajes {
+public class ContextTXTVentaTicket {
     
     
-    static String NameTXT = "Viajes.txt";
+      static String NameTXT = "Venta Ticket.txt";
     
     public static void Guardardatos(ArrayList lista)
     {
@@ -29,14 +29,15 @@ public class ContentTXTGestionViajes {
             fileWriter = new FileWriter(NameTXT);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
             
-                for (GestionViajes Viajes : (ArrayList<GestionViajes>)lista)
+                for (VentaTicket Venta : (ArrayList<VentaTicket>)lista)
                 {
-                    bufferedWriter.write(Viajes.getIdViaje()
-                            +","+Viajes.getPlacaBus()
-                            +","+Viajes.getCedulaChofer()
-                            +","+Viajes.getIdRuta()
-                            +","+Viajes.getFecha()
-                            +"," +Viajes.getHora()+"\n");
+                    bufferedWriter.write(Venta.getIdViaje()
+                            +","+Venta.getPlacaBus()
+                            +","+Venta.getCedulaChofer()
+                            +","+Venta.getIdRuta()
+                            +","+Venta.getFecha()
+                             +","+Venta.getHora()
+                            +","+Venta.getCantidadTickets()+"\n");
                           
                     
   
@@ -46,7 +47,7 @@ public class ContentTXTGestionViajes {
             System.out.println("Este Archivo a sido creado con exito");
         }catch(Exception e)
         {
-            System.out.println("Error al guardar los datos de gestion de Viajes el en txt");
+            System.out.println("Error al guardar los datos de Vesntas de tickets el en txt");
         }
         finally
         {
@@ -68,7 +69,7 @@ public class ContentTXTGestionViajes {
     public static ArrayList LeerDatos()
     {
         File file = new File(NameTXT);
-        ArrayList listaViajes = new ArrayList();
+        ArrayList listaVentas = new ArrayList();
         
         Scanner scanner;
         
@@ -80,15 +81,16 @@ public class ContentTXTGestionViajes {
             {
                 String linea = scanner.nextLine();
                 Scanner delimitar = new Scanner(linea);
-                GestionViajes vi = new GestionViajes();
+                VentaTicket ve = new VentaTicket();
                 delimitar.useDelimiter("\\s*,\\s*");                                    
-                vi.setIdViaje(String.valueOf(delimitar.next()));
-                vi.setPlacaBus(String.valueOf(delimitar.next()));
-                vi.setCedulaChofer(String.valueOf(delimitar.next()));
-                vi.setIdRuta(String.valueOf(delimitar.next()));
-                vi.setFecha(String.valueOf(delimitar.next()));
-                vi.setHora(String.valueOf(delimitar.next()));
-                listaViajes.add(vi);
+                ve.setIdViaje(String.valueOf(delimitar.next()));
+                ve.setPlacaBus(String.valueOf(delimitar.next()));
+                ve.setCedulaChofer(String.valueOf(delimitar.next()));
+                ve.setIdRuta(String.valueOf(delimitar.next()));
+                ve.setFecha(String.valueOf(delimitar.next()));
+                ve.setHora(String.valueOf(delimitar.next()));
+                ve.setCantidadTickets(Integer.parseInt(delimitar.next()));
+                listaVentas.add(ve);
             }
             
            
@@ -96,12 +98,11 @@ public class ContentTXTGestionViajes {
             
         } catch (Exception e) 
         {
-            System.out.println("A ocurrido un error al traer los datos de gestion de Viajes.txt \n"
+            System.out.println("A ocurrido un error al traer los de Ventas de tickets.txt \n"
                     + "(Revisar el metodo Leer datos())");
         }
     
-    return listaViajes;
+    return listaVentas;
     }
-    
     
 }

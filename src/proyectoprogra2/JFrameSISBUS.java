@@ -18,6 +18,7 @@ public class JFrameSISBUS extends javax.swing.JFrame {
     public JFrameSISBUS() {
         initComponents();
         ShowTableGestionViaje();
+        Cargardata();
     }
 
     /**
@@ -299,6 +300,7 @@ public class JFrameSISBUS extends javax.swing.JFrame {
     private void BtnGestionViajesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGestionViajesActionPerformed
         JDialogGestionViajes jdViajes = new JDialogGestionViajes(this, true);
         jdViajes.setVisible(true);
+        dispose();
     }//GEN-LAST:event_BtnGestionViajesActionPerformed
 
     private void BtnIterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnIterarActionPerformed
@@ -310,15 +312,21 @@ public class JFrameSISBUS extends javax.swing.JFrame {
         jdTicket.setVisible(true);
         dispose();
     }//GEN-LAST:event_BtnVentaTicketsActionPerformed
-
+     public void Cargardata()
+    {
+    
+        ListaGesVia = ContextTXTGestionViajes.LeerDatos();
+    
+    }
     public void ShowTableGestionViaje() {
-        String GestViaje[][] = new String[ListaGesVia.size()][4];
+        String GestViaje[][] = new String[ListaGesVia.size()][5];
 
         for (int i = 0; i < ListaGesVia.size(); i++) {
             GestViaje[i][0] = ListaGesVia.get(i).getIdViaje();
             GestViaje[i][1] = ListaGesVia.get(i).getCedulaChofer();
-            GestViaje[i][2] = ListaGesVia.get(i).getFecha();
-            GestViaje[i][3] = ListaGesVia.get(i).getHora();
+            GestViaje[i][2] = ListaGesVia.get(i).getIdRuta();
+            GestViaje[i][3] = ListaGesVia.get(i).getFecha();
+            GestViaje[i][4] = ListaGesVia.get(i).getHora();
         }
 
         JTableGeneral.setModel(new javax.swing.table.DefaultTableModel(GestViaje, new String[]{"Id Viaje", "Cedula", "Fecha", "Hora"}));

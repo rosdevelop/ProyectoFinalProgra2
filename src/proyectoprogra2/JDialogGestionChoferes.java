@@ -30,7 +30,7 @@ public class JDialogGestionChoferes extends javax.swing.JDialog {
     public JDialogGestionChoferes(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-         cargarData();
+        cargarData();
         showTable();
         setLocationRelativeTo(null);
         TblGestionDeChofer.addMouseListener(new MouseAdapter() {
@@ -222,7 +222,7 @@ public class JDialogGestionChoferes extends javax.swing.JDialog {
         ButtonActualizar.setBackground(new java.awt.Color(0, 0, 205));
         ButtonActualizar.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         ButtonActualizar.setForeground(new java.awt.Color(255, 255, 255));
-        ButtonActualizar.setText("Actializar");
+        ButtonActualizar.setText("Actualizar");
         ButtonActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ButtonActualizarActionPerformed(evt);
@@ -366,18 +366,16 @@ public class JDialogGestionChoferes extends javax.swing.JDialog {
     }//GEN-LAST:event_ButtonActualizarActionPerformed
 
     private void ButtonCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonCrearActionPerformed
-         Choferes cho = new Choferes();
+        Choferes cho = new Choferes();
         cho.setCedula(TextCedula.getText());
         cho.setNombre(TextNombre.getText());
         cho.setApellido1(TextPrimerApellido.getText());
         cho.setApellido2(TextSegundoApellido.getText());
         cho.setTelefono(TextNumero.getText());
         cho.setExperiencia(Integer.parseInt(TextAños.getText()));
-       
-
+     
         ListaChofe.add(cho);
         ContextTXTGestionChoferes.GuardarDatos(ListaChofe);
-        LimpiarCasillas();
         showTable();    }//GEN-LAST:event_ButtonCrearActionPerformed
 
     private void TextNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextNombreActionPerformed
