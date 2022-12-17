@@ -9,6 +9,7 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.DefaultComboBoxModel;
 import static proyectoprogra2.JDialogGestionChoferes.ListaChofe;
 import static proyectoprogra2.JDialogGestionViajes.ListaGesVia;
 
@@ -21,7 +22,7 @@ import static proyectoprogra2.JDialogGestionViajes.ListaGesVia;
  * @author jerem
  */
 public class JDialogVentaTicket extends javax.swing.JDialog {
-    
+ DefaultComboBoxModel modelIdRuta = new DefaultComboBoxModel();
     ArrayList<VentaTicket>lista = new ArrayList<>();
     ArrayList<VentaTicket>listaTxt = new ArrayList<>();
     ArrayList<GestionViajes>ListaGesVia = new ArrayList<>();
@@ -128,6 +129,7 @@ public class JDialogVentaTicket extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel4 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         BtnComprar = new javax.swing.JButton();
         BtnActualizar = new javax.swing.JButton();
@@ -146,12 +148,17 @@ public class JDialogVentaTicket extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         BtnComprar.setText("Comprar");
         BtnComprar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 BtnComprarMouseClicked(evt);
             }
         });
+        jPanel2.add(BtnComprar, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 57, 84, -1));
 
         BtnActualizar.setText("Actualizar");
         BtnActualizar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -159,6 +166,12 @@ public class JDialogVentaTicket extends javax.swing.JDialog {
                 BtnActualizarMouseClicked(evt);
             }
         });
+        BtnActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnActualizarActionPerformed(evt);
+            }
+        });
+        jPanel2.add(BtnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(184, 57, 84, -1));
 
         BtnEliminar.setText("Eliminar");
         BtnEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -166,6 +179,12 @@ public class JDialogVentaTicket extends javax.swing.JDialog {
                 BtnEliminarMouseClicked(evt);
             }
         });
+        BtnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnEliminarActionPerformed(evt);
+            }
+        });
+        jPanel2.add(BtnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 57, 84, -1));
 
         BtnEditar.setText("Editar");
         BtnEditar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -173,83 +192,28 @@ public class JDialogVentaTicket extends javax.swing.JDialog {
                 BtnEditarMouseClicked(evt);
             }
         });
+        jPanel2.add(BtnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(101, 57, -1, -1));
 
         JLblEdit.setText("........................................................");
+        jPanel2.add(JLblEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(46, 20, 333, -1));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 390, Short.MAX_VALUE)
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addGap(35, 35, 35)
-                            .addComponent(JLblEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addComponent(BtnComprar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(6, 6, 6)
-                            .addComponent(BtnEditar)
-                            .addGap(11, 11, 11)
-                            .addComponent(BtnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(12, 12, 12)
-                            .addComponent(BtnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(JLblEdit)
-                    .addGap(21, 21, 21)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(BtnComprar)
-                        .addComponent(BtnEditar)
-                        .addComponent(BtnActualizar)
-                        .addComponent(BtnEliminar))
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
+        jPanel4.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 320, 390, -1));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 320, 390, -1));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("ID del viaje:");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(64, 59, 77, -1));
 
         JCBoxIdViaje.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(JCBoxIdViaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(64, 81, 91, -1));
 
         jLabel2.setText("Cantidad de Tickets:");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(64, 142, 120, -1));
+        jPanel1.add(TxtCantidadTickets, new org.netbeans.lib.awtextra.AbsoluteConstraints(64, 164, 120, -1));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(64, 64, 64)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(TxtCantidadTickets, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JCBoxIdViaje, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(216, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(59, 59, 59)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(JCBoxIdViaje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(TxtCantidadTickets, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(105, Short.MAX_VALUE))
-        );
+        jPanel4.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 300));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 300));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         JTblVentaTicket.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -269,24 +233,11 @@ public class JDialogVentaTicket extends javax.swing.JDialog {
         });
         jScrollPane1.setViewportView(JTblVentaTicket);
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(48, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 446, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
+        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 48, 389, 446));
 
-        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 0, 410, 500));
+        jPanel4.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 0, 410, 500));
+
+        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 860, 530));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -423,6 +374,44 @@ public class JDialogVentaTicket extends javax.swing.JDialog {
         LimpiarCasillas();
     }//GEN-LAST:event_BtnEliminarMouseClicked
 
+    private void BtnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnActualizarActionPerformed
+
+ for (int i = 0; i < 10; i++) {
+
+            if (listaTxtViaje.get(i).getIdViaje().equals(CantidadTickets)) {
+
+           
+           //     listaTxtViaje.get(i).setCantidadTickets(Integer.parseInt(TxtCantidadTickets.getText()));
+                listaTxtViaje.get(i).setIdViaje((String) JCBoxIdViaje.getSelectedItem());
+               
+
+                ContextTXTVentaTicket.Guardardatos(listaTxtViaje);
+                LimpiarCasillas();
+                readDataTable();
+            }
+
+        }
+
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnActualizarActionPerformed
+
+    private void BtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEliminarActionPerformed
+
+        for (int i = 0; i < listaTxtViaje.size(); i++) {
+            if (listaTxtViaje.get(i).getIdViaje().equals(CantidadTickets)) {
+                listaTxtViaje.remove(i);
+                ContextTXTVentaTicket.Guardardatos(listaTxtViaje);
+                LimpiarCasillas();
+                readDataTable();
+            }
+
+        }
+
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnEliminarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -479,6 +468,7 @@ public class JDialogVentaTicket extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
