@@ -10,9 +10,9 @@ package proyectoprogra2;
  */
 public class VentaTicket extends  GestionViajes{
     
-    protected int CantidadTickets;
+    protected String CantidadTickets;
 
-    public VentaTicket(int CantidadTickets, String IdViaje, String PlacaBus, String CedulaChofer, String IdRuta, String Fecha, String Hora) {
+    public VentaTicket(String CantidadTickets, String IdViaje, String PlacaBus, String CedulaChofer, String IdRuta, String Fecha, String Hora) {
         super(IdViaje, PlacaBus, CedulaChofer, IdRuta, Fecha, Hora);
         /*
         * @param arg Constructores con parametros VentaTicket con sus atributos heredados de Gestion Viajes
@@ -20,7 +20,7 @@ public class VentaTicket extends  GestionViajes{
         this.CantidadTickets = CantidadTickets;
     }
 
-    public VentaTicket(int CantidadTickets) {
+    public VentaTicket(String CantidadTickets) {
         this.CantidadTickets = CantidadTickets;
     }
 
@@ -28,14 +28,14 @@ public class VentaTicket extends  GestionViajes{
         /*
         * @param arg Constructores con parametros VentaTicket 
         */
-        this.CantidadTickets = 0;
+        this.CantidadTickets = "";
     }
 
-    public int getCantidadTickets() {
+    public String getCantidadTickets() {
         return CantidadTickets;
     }
 
-    public void setCantidadTickets(int CantidadTickets) {
+    public void setCantidadTickets(String CantidadTickets) {
         this.CantidadTickets = CantidadTickets;
     }
     

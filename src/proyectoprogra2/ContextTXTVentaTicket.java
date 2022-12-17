@@ -89,7 +89,7 @@ public class ContextTXTVentaTicket {
                 ve.setIdRuta(String.valueOf(delimitar.next()));
                 ve.setFecha(String.valueOf(delimitar.next()));
                 ve.setHora(String.valueOf(delimitar.next()));
-                ve.setCantidadTickets(Integer.parseInt(delimitar.next()));
+                ve.setCantidadTickets(String.valueOf(delimitar.next()));
                 listaVentas.add(ve);
             }
             

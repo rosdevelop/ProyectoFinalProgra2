@@ -10,8 +10,6 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.DefaultComboBoxModel;
-import static proyectoprogra2.JDialogGestionChoferes.ListaChofe;
-import static proyectoprogra2.JDialogGestionViajes.ListaGesVia;
 
 
 
@@ -21,8 +19,8 @@ import static proyectoprogra2.JDialogGestionViajes.ListaGesVia;
  *
  * @author jerem
  */
-public class JDialogVentaTicket extends javax.swing.JDialog {
- DefaultComboBoxModel modelIdRuta = new DefaultComboBoxModel();
+public final class JDialogVentaTicket extends javax.swing.JDialog {
+ DefaultComboBoxModel modelIdViaje = new DefaultComboBoxModel();
     ArrayList<VentaTicket>lista = new ArrayList<>();
     ArrayList<VentaTicket>listaTxt = new ArrayList<>();
     ArrayList<GestionViajes>ListaGesVia = new ArrayList<>();
@@ -33,11 +31,14 @@ public class JDialogVentaTicket extends javax.swing.JDialog {
     String IdRuta;
     String Fecha;
     String Hora;
-    int CantidadTickets;
+    String CantidadTickets;
 
     public JDialogVentaTicket(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        cargarData();
+        CargarDatosIdViaje();
+        cargarDataIDViajeComboBox();
         cargarDatosTxt();
         cargarDatosTxtViajes();
         readDataTable();
@@ -47,8 +48,8 @@ public class JDialogVentaTicket extends javax.swing.JDialog {
         {
           viaje[i] = ListaGesVia.get(i).getIdViaje();
         }
-        JCBoxIdViaje.setModel(new javax.swing.DefaultComboBoxModel<>(viaje));
-        JCBoxIdViaje.setSelectedIndex(-1);
+        CmbIdViaje.setModel(new javax.swing.DefaultComboBoxModel<>(viaje));
+        CmbIdViaje.setSelectedIndex(-1);
         
         
          JTblVentaTicket.addMouseListener( new MouseAdapter()
@@ -59,7 +60,8 @@ public class JDialogVentaTicket extends javax.swing.JDialog {
                     {
                     int i = JTblVentaTicket.getSelectedRow();
                     IdViaje = JTblVentaTicket.getValueAt(i, 0).toString();
-                    CantidadTickets = Integer.parseInt(JTblVentaTicket.getValueAt(i, 1).toString());
+                    CantidadTickets = JTblVentaTicket.getValueAt(i, 1).toString();
+                     
                     }
                 
                 }
@@ -70,7 +72,7 @@ public class JDialogVentaTicket extends javax.swing.JDialog {
      {
      TxtCantidadTickets.setText("");
      TxtCantidadTickets.setEditable(true);
-     JCBoxIdViaje.setSelectedItem(null);
+     CmbIdViaje.setSelectedItem(null);
      BtnComprar.setEnabled(true);
      
      }
@@ -130,17 +132,17 @@ public class JDialogVentaTicket extends javax.swing.JDialog {
     private void initComponents() {
 
         jPanel4 = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        CmbIdViaje = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
+        TxtCantidadTickets = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         BtnComprar = new javax.swing.JButton();
         BtnActualizar = new javax.swing.JButton();
         BtnEliminar = new javax.swing.JButton();
         BtnEditar = new javax.swing.JButton();
         JLblEdit = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        JCBoxIdViaje = new javax.swing.JComboBox<>();
-        jLabel2 = new javax.swing.JLabel();
-        TxtCantidadTickets = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         JTblVentaTicket = new javax.swing.JTable();
@@ -148,18 +150,54 @@ public class JDialogVentaTicket extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel4.setBackground(new java.awt.Color(243, 249, 249));
+        jPanel4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel1.setBackground(new java.awt.Color(243, 249, 249));
+        jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(4, 88, 96));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("ID del viaje:");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 240, -1));
+
+        CmbIdViaje.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        CmbIdViaje.setModel(modelIdViaje);
+        jPanel1.add(CmbIdViaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 130, -1));
+
+        jLabel2.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(4, 88, 96));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Cantidad de Tickets:");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 120, 220, -1));
+        jPanel1.add(TxtCantidadTickets, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 150, 200, -1));
+
+        jPanel2.setBackground(new java.awt.Color(243, 249, 249));
+        jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        BtnComprar.setBackground(new java.awt.Color(8, 31, 135));
+        BtnComprar.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        BtnComprar.setForeground(new java.awt.Color(255, 255, 255));
         BtnComprar.setText("Comprar");
         BtnComprar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 BtnComprarMouseClicked(evt);
             }
         });
-        jPanel2.add(BtnComprar, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 57, 84, -1));
+        BtnComprar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnComprarActionPerformed(evt);
+            }
+        });
+        jPanel2.add(BtnComprar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, 90, -1));
 
+        BtnActualizar.setBackground(new java.awt.Color(8, 31, 135));
+        BtnActualizar.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        BtnActualizar.setForeground(new java.awt.Color(255, 255, 255));
         BtnActualizar.setText("Actualizar");
         BtnActualizar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -171,8 +209,11 @@ public class JDialogVentaTicket extends javax.swing.JDialog {
                 BtnActualizarActionPerformed(evt);
             }
         });
-        jPanel2.add(BtnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(184, 57, 84, -1));
+        jPanel2.add(BtnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, 100, -1));
 
+        BtnEliminar.setBackground(new java.awt.Color(255, 0, 51));
+        BtnEliminar.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        BtnEliminar.setForeground(new java.awt.Color(255, 255, 255));
         BtnEliminar.setText("Eliminar");
         BtnEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -184,37 +225,33 @@ public class JDialogVentaTicket extends javax.swing.JDialog {
                 BtnEliminarActionPerformed(evt);
             }
         });
-        jPanel2.add(BtnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 57, 84, -1));
+        jPanel2.add(BtnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 50, 100, -1));
 
+        BtnEditar.setBackground(new java.awt.Color(8, 31, 135));
+        BtnEditar.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        BtnEditar.setForeground(new java.awt.Color(255, 255, 255));
         BtnEditar.setText("Editar");
         BtnEditar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 BtnEditarMouseClicked(evt);
             }
         });
-        jPanel2.add(BtnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(101, 57, -1, -1));
+        jPanel2.add(BtnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 50, 80, -1));
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 400, -1));
 
         JLblEdit.setText("........................................................");
-        jPanel2.add(JLblEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(46, 20, 333, -1));
+        jPanel1.add(JLblEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 333, -1));
 
-        jPanel4.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 320, 390, -1));
+        jPanel4.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 420, 300));
 
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel1.setText("ID del viaje:");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(64, 59, 77, -1));
-
-        JCBoxIdViaje.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(JCBoxIdViaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(64, 81, 91, -1));
-
-        jLabel2.setText("Cantidad de Tickets:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(64, 142, 120, -1));
-        jPanel1.add(TxtCantidadTickets, new org.netbeans.lib.awtextra.AbsoluteConstraints(64, 164, 120, -1));
-
-        jPanel4.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 300));
-
+        jPanel3.setBackground(new java.awt.Color(243, 249, 249));
+        jPanel3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        JTblVentaTicket.setAutoCreateRowSorter(true);
+        JTblVentaTicket.setBackground(new java.awt.Color(243, 249, 249));
+        JTblVentaTicket.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         JTblVentaTicket.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
@@ -233,7 +270,7 @@ public class JDialogVentaTicket extends javax.swing.JDialog {
         });
         jScrollPane1.setViewportView(JTblVentaTicket);
 
-        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 48, 389, 446));
+        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 389, 446));
 
         jPanel4.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 0, 410, 500));
 
@@ -244,7 +281,7 @@ public class JDialogVentaTicket extends javax.swing.JDialog {
     public void confirmarDatosViaje(){
         
         for (int i = 0; i < ListaGesVia.size() ; i++) {
-            if(JCBoxIdViaje.getSelectedItem().toString().equals(ListaGesVia.get(i).getIdViaje()))
+            if(CmbIdViaje.getSelectedItem().toString().equals(ListaGesVia.get(i).getIdViaje()))
             {
                 PlacaBus = ListaGesVia.get(i).getPlacaBus();
                 CedulaChofer = ListaGesVia.get(i).getCedulaChofer();
@@ -268,7 +305,7 @@ public class JDialogVentaTicket extends javax.swing.JDialog {
         for (int i = 0; i < lista.size() ; i++) 
         {
            
-          if(JCBoxIdViaje.getSelectedItem().toString().equals(lista.get(i).getIdViaje()))
+          if(CmbIdViaje.getSelectedItem().toString().equals(lista.get(i).getIdViaje()))
           {
              var1 = true;
           }
@@ -280,56 +317,27 @@ public class JDialogVentaTicket extends javax.swing.JDialog {
      
      }
     private void JTblVentaTicketMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JTblVentaTicketMouseClicked
-   
+  
+       TxtCantidadTickets.setText(String.valueOf(CantidadTickets)); 
+        BtnComprar.setEnabled(false);
+        TxtCantidadTickets.setEnabled(false);   
         
     }//GEN-LAST:event_JTblVentaTicketMouseClicked
 
     private void BtnComprarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnComprarMouseClicked
-        // TODO add your handling code here:
-        int vari;
-        if(verificarViaje()==false & !JCBoxIdViaje.getSelectedItem().equals("") & !TxtCantidadTickets.getText().isEmpty())
-        {
-            confirmarDatosViaje();           
-
-            
-          //  VentaTicket vt = new VentaTicket(JCBoxIdViaje.getSelectedItem().toString(),PlacaBus,CedulaChofer,IdRuta,Fecha,Hora,Integer.parseInt(TxtCantidadTickets.getText()));
-          //  lista.add(vt);
-            updateTxt();
-            LimpiarCasillas();
-            readDataTable();      
-       }
-        if (verificarViaje()==true & !TxtCantidadTickets.getText().isEmpty())
-          { 
-            //cantidadTiquetes = cantidadTiquetes + Integer.parseInt(txtTiquetes.getText());
-            for (int j = 0; j < lista.size() ; j++) 
-            { 
-              if(JCBoxIdViaje.getSelectedItem().toString().equals(lista.get(j).getIdViaje())){
-              vari = j;
-              lista.get(vari).setCantidadTickets(lista.get(vari).getCantidadTickets() + Integer.parseInt(TxtCantidadTickets.getText()));
-              }  
-            }
-            updateTxt();
-            LimpiarCasillas();
-            readDataTable();     
-          }
-        else
-        {
-          
-         if (JCBoxIdViaje.getSelectedIndex() == -1)
-          { 
-              JOptionPane.showMessageDialog(null, "El campo ID de Viaje se encuentra vacio");
-          }
-           if(TxtCantidadTickets.getText().isEmpty())
-            {
-                JOptionPane.showMessageDialog(null, "Por favor ingrese la cantidad de tickets que desea comprar");
-            }
-          
-        }
+       
+        VentaTicket ven = new VentaTicket();
+        ven.setIdViaje((String) CmbIdViaje.getSelectedItem());
+        ven.setCantidadTickets(TxtCantidadTickets.getText());
+        listaTxt.add(ven);
+        ContextTXTVentaTicket.Guardardatos(listaTxt);
+        LimpiarCasillas();
+        showTable();
     }//GEN-LAST:event_BtnComprarMouseClicked
 
     private void BtnEditarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnEditarMouseClicked
         // TODO add your handling code here:
-        JCBoxIdViaje.setSelectedItem(IdViaje);
+        CmbIdViaje.setSelectedItem(IdViaje);
         TxtCantidadTickets.setText(String.valueOf(CantidadTickets));
         BtnComprar.setEnabled(false);
         JLblEdit.setText("Presione Actualizar una vez los datos sean actualizados");
@@ -342,9 +350,10 @@ public class JDialogVentaTicket extends javax.swing.JDialog {
           if(IdViaje.equals(lista.get(j).getIdViaje()))
           {    
               
-              lista.get(j).setIdViaje(JCBoxIdViaje.getSelectedItem().toString());
+              lista.get(j).setIdViaje(CmbIdViaje.getSelectedItem().toString());
               //confirmarDatosViaje();
-              lista.get(j).setCantidadTickets(Integer.parseInt(TxtCantidadTickets.getText()));
+              lista.get(j).setCantidadTickets(TxtCantidadTickets.getText());
+              
               System.out.println(lista.get(j).getIdViaje());   
               //String idViajes, String placaBus, String cedulaChofer, String idRuta, String fecha, String hora,int cantidadTiquetes
                  
@@ -382,7 +391,7 @@ public class JDialogVentaTicket extends javax.swing.JDialog {
 
            
            //     listaTxtViaje.get(i).setCantidadTickets(Integer.parseInt(TxtCantidadTickets.getText()));
-                listaTxtViaje.get(i).setIdViaje((String) JCBoxIdViaje.getSelectedItem());
+                listaTxtViaje.get(i).setIdViaje((String) CmbIdViaje.getSelectedItem());
                
 
                 ContextTXTVentaTicket.Guardardatos(listaTxtViaje);
@@ -411,6 +420,20 @@ public class JDialogVentaTicket extends javax.swing.JDialog {
 
         // TODO add your handling code here:
     }//GEN-LAST:event_BtnEliminarActionPerformed
+
+    private void BtnComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnComprarActionPerformed
+
+         VentaTicket ven = new VentaTicket();
+         ven.setIdViaje((String) CmbIdViaje.getSelectedItem());
+         ven.setCantidadTickets(TxtCantidadTickets.getText());
+        
+        listaTxt.add(ven);
+        ContextTXTVentaTicket.Guardardatos(listaTxt);
+        LimpiarCasillas();
+        showTable();
+        
+        
+    }//GEN-LAST:event_BtnComprarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -459,7 +482,7 @@ public class JDialogVentaTicket extends javax.swing.JDialog {
     private javax.swing.JButton BtnComprar;
     private javax.swing.JButton BtnEditar;
     private javax.swing.JButton BtnEliminar;
-    private javax.swing.JComboBox<String> JCBoxIdViaje;
+    private javax.swing.JComboBox<String> CmbIdViaje;
     private javax.swing.JLabel JLblEdit;
     private javax.swing.JTable JTblVentaTicket;
     private javax.swing.JTextField TxtCantidadTickets;
@@ -471,4 +494,44 @@ public class JDialogVentaTicket extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
+
+    
+    
+    
+    
+    public void cargarDataIDViajeComboBox() {
+        String VecViaje[] = new String[ListaGesVia.size()];
+        ListaGesVia = ContextTXTGestionViajes.LeerDatos();
+        for (int i = 0; i < ListaGesVia.size(); i++) {
+            VecViaje[i] = ListaGesVia.get(i).getIdViaje();
+        }
+        for (int i = 0; i < VecViaje.length; i++) {
+            modelIdViaje.addElement(VecViaje[i]);
+        }
+        
+        
+    }
+
+    
+    public void CargarDatosIdViaje() {
+        ListaGesVia = ContextTXTGestionViajes.LeerDatos();
+    }
+
+    private void showTable() {
+        
+          String vend[][] = new String[listaTxt.size()][2];
+
+        for (int i = 0; i < listaTxt.size(); i++) {
+            vend[i][0] = listaTxt.get(i).getIdViaje();
+            vend[i][1] = listaTxt.get(i).getCantidadTickets();
+           
+
+    }
+    }
+    
+    
+     private void cargarData() {
+
+        listaTxt = ContextTXTVentaTicket.LeerDatos();
+    }
 }
