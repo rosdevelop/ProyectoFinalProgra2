@@ -256,13 +256,13 @@ public class JDialogGestionFlotilla extends javax.swing.JDialog {
         JtGestionFlotilla.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         JtGestionFlotilla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "ID", "Lugar salida", "Lugar Llegada", "Ruta", "Tiempo estimado"
+                "Placa", "Cantidad Pasajeros", "Nombre Bus", "Vida util"
             }
         ));
         JtGestionFlotilla.addMouseListener(new java.awt.event.MouseAdapter() {
